@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.guangde.dao.IUserDao">
+
+	<!--根据用户id查询用户 -->
+	<select id="getUserById" parameterType="java.lang.String" resultType="com.guangde.vo.User">
+		SELECT *
+		FROM USERS T WHERE T.USERID=#{userId}
+	</select>
+
+	<!--新增用户 -->
+	<insert id="insertUser" parameterType="com.guangde.vo.User">
+		INSERT INTO
+		USERS(USERID,USERNAME,PASSWORD,FULLNAME,EMAIL)
+		VALUES(#{userId},#{userName},#{password},#{fullName},#{email})
+	</insert>
+
+	<!--编辑用户 -->
+	<update id="updateUser" parameterType="com.guangde.vo.User">
+		UPDATE USERS t SET
+		t.fullname=#{fullName} where t.userid=#{userId}
+	</update>
+
+	<!--根据用户id删除用户 -->
+	<delete id="deleteUserById" parameterType="java.lang.String">
+		delete from USERS
+		where userId=#{userId}
+	</delete>
+</mapper>
