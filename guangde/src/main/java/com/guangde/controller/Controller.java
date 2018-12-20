@@ -27,6 +27,7 @@ public class Controller {
 		
 		model.addObject("test", "mjwu");
 		model.addObject("date", new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(new Date()));
+		logger.info("index-->");
 		return model;
 	}
 	
