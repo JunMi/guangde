@@ -23,7 +23,7 @@ public class Controller {
 	
 	@RequestMapping("index.do")
 	public ModelAndView index() {
-		ModelAndView model = new ModelAndView("index");
+		ModelAndView model = new ModelAndView("client/html/index");
 		
 		model.addObject("test", "mjwu");
 		model.addObject("date", new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(new Date()));
