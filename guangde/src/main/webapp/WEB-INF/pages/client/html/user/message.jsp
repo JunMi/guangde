@@ -9,7 +9,7 @@
 
 	<!-- header -->
 	<jsp:include page="../common/header.jsp"></jsp:include>
-	
+
 	<div class="layui-container fly-marginTop fly-user-main">
 		<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
 			<li class="layui-nav-item"><a href="user/home.do"> <i
@@ -68,7 +68,7 @@
 	</div>
 
 	<!-- footer -->
-	<jsp:include page="../common/footer.jsp"></jsp:include>	
-	
+	<jsp:include page="../common/footer.jsp"></jsp:include>
+
 </body>
 </html>
