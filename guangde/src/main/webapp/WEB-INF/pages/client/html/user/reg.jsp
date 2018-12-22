@@ -1,14 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<jsp:include page="../../../base.jsp"></jsp:include>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>注册</title>
+<jsp:include page="../../../base.jsp"></jsp:include>
 </head>
 <body>
 
-	<!-- header -->
-	<jsp:include page="../menu/header.jsp"></jsp:include>
+	<!-- header --> 
+	<jsp:include page="../common/header.jsp"></jsp:include>
 
 	<div class="layui-container fly-marginTop">
 		<div class="fly-panel fly-panel-user" pad20>
@@ -82,25 +82,8 @@
 
 	</div>
 
-	<jsp:include page="../menu/footer.jsp"></jsp:include>
-	
-	<script src="../res/layui/layui.js"></script>
-	<script>
-		layui.cache.page = 'user';
-		layui.cache.user = {
-			username : '游客',
-			uid : -1,
-			avatar : '../res/images/avatar/00.jpg',
-			experience : 83,
-			sex : '男'
-		};
-		layui.config({
-			version : "3.0.0",
-			base : '../res/mods/'
-		}).extend({
-			fly : 'index'
-		}).use('fly');
-	</script>
+	<!-- footer -->
+	<jsp:include page="../common/footer.jsp"></jsp:include>	
 
 </body>
 </html>
