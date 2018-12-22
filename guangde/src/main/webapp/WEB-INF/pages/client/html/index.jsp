@@ -1,50 +1,17 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<jsp:include page="../../base.jsp"></jsp:include>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>我的社区</title>
+<jsp:include page="../../base.jsp"></jsp:include>
 </head>
 <body>
 	
 	<!-- header -->
-	<jsp:include page="menu/header.jsp"></jsp:include>
+	<jsp:include page="common/header.jsp"></jsp:include>
+	<!-- column -->
+	<jsp:include page="common/column.jsp"></jsp:include>
 	
-	<div class="fly-panel fly-column">
-		<div class="layui-container">
-		
-			<!-- nav导航栏 start -->
-			<ul class="layui-clear">
-				<li class="layui-hide-xs layui-this"><a href="/">首页</a></li>
-				<li><a href="jie/index.html">提问</a></li>
-				<li><a href="jie/index.html">分享<span class="layui-badge-dot"></span></a></li>
-				<li><a href="jie/index.html">讨论</a></li>
-				<li><a href="jie/index.html">建议</a></li>
-				<li><a href="jie/index.html">公告</a></li>
-				<li><a href="jie/index.html">动态</a></li>
-				<li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block">
-					<span class="fly-mid"></span></li>
-				
-				<!-- 用户登入后显示 -->
-				<!-- <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a
-					href="user/index.html">我发表的贴</a>
-				</li>
-				<li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a
-					href="user/index.html#collection">我收藏的贴</a>
-				</li> -->
-			</ul>
-			<!-- nav导航栏 end -->
-			
-		    <div class="fly-column-right layui-hide-xs"> 
-		      <span class="fly-search"><i class="layui-icon"></i></span> 
-		      <a href="jie/add.html" class="layui-btn">发表新帖</a> 
-		    </div> 
-		    <div class="layui-hide-sm layui-show-xs-block" style="margin-top: -10px; padding-bottom: 10px; text-align: center;"> 
-		      	<a href="jie/add.html" class="layui-btn">发表新帖</a> 
-		    </div> 
-		</div>
-	</div>
-
 	<div class="layui-container">
 		<div class="layui-row layui-col-space15">
 			<div class="layui-col-md8">
@@ -56,6 +23,7 @@
 							class="layui-hide-sm layui-show-xs-block fly-right"
 							id="LAY_goSignin" style="color: #FF5722;">去签到</a>
 					</div>
+					
 					<ul class="fly-list">
 						<li>
 							<a href="user/home.html" class="fly-avatar"> 
@@ -120,17 +88,9 @@
 				
 				<!-- 综合 start -->
 				<div class="fly-panel" style="margin-bottom: 0;">
-
-					<div class="fly-panel-title fly-filter">
-						<a href="javascript:void(0)" class="layui-this">综合</a><span class="fly-mid"></span>
-						<a href="javascript:void(0)">未结</a><span class="fly-mid"></span>
-						<a href="javascript:void(0)">已结</a><span class="fly-mid"></span> 
-						<a href="javascript:void(0)">精华</a><span class="fly-filter-right layui-hide-xs"> 
-						<a href="javascript:void(0)" class="layui-this">按最新</a><span class="fly-mid"></span>
-						<a href="javascript:void(0)">按热议</a>
-						</span>
-					</div>
-
+					
+					<jsp:include page="common/filter.jsp"></jsp:include>
+					
 					<ul class="fly-list">
 						<li>
 							<a href="user/home.html" class="fly-avatar"> 
@@ -195,21 +155,7 @@
 			<div class="layui-col-md4">
 				
 				<!-- 温馨通道 -->
-				<div class="fly-panel">
-					<h3 class="fly-panel-title">温馨通道</h3>
-					<ul class="fly-panel-main fly-list-static">
-						<li><a href="javascript:void(0)" target="_blank">
-							layui的 GitHub 及 Gitee (码云) 仓库，欢迎Star</a></li>
-						<li><a href="javascript:void(0)" target="_blank">
-								layui 常见问题的处理和实用干货集锦 </a></li>
-						<li><a href="javascript:void(0)" target="_blank">
-							layui的 GitHub 及 Gitee (码云) 仓库，欢迎Star</a></li>
-						<li><a href="javascript:void(0)" target="_blank">
-								layui 常见问题的处理和实用干货集锦 </a></li>
-						<li><a href="javascript:void(0)" target="_blank">
-							layui的 GitHub 及 Gitee (码云) 仓库，欢迎Star</a></li>
-					</ul>
-				</div>
+				<jsp:include page="common/list-static.jsp"></jsp:include>
 				
 				<!-- 签到 -->
 				<div class="fly-panel fly-signin">
@@ -252,21 +198,7 @@
 				</div>
 
 				<!-- 本周热议 -->
-				<dl class="fly-panel fly-list-one">
-					<dt class="fly-panel-title">本周热议</dt>
-					
-					<dd>
-						<a href="jie/detail.html">基于 layui 的极简社区页面模版</a> 
-						<span><i class="iconfont icon-pinglun1"></i> 216</span>
-					</dd>
-					<dd>
-						<a href="jie/detail.html">基于 layui 的极简社区页面模版</a> 
-						<span><i class="iconfont icon-pinglun1"></i> 16</span>
-					</dd>
-
-					<!-- 无数据时 -->
-					<!-- <div class="fly-none">没有相关数据</div> -->
-				</dl>
+				<jsp:include page="common/list-hot.jsp"></jsp:include>
 
 				<!-- 广告 -->
 				<div class="fly-panel">
@@ -282,21 +214,11 @@
 				<div class="fly-panel fly-link">
 					<h3 class="fly-panel-title">友情链接</h3>
 					<dl class="fly-panel-main">
-						<dd>
-							<a href="javascript:void(0)" target="_blank">layui</a>
-						<dd>
-						<dd>
-							<a href="javascript:void(0)" target="_blank">WebIM</a>
-						<dd>
-						<dd>
-							<a href="javascript:void(0)" target="_blank">layer</a>
-						<dd>
-						<dd>
-							<a href="javascript:void(0)" target="_blank">layDate</a>
-						<dd>
-						<dd>
-							<a href="javascript:void(0)" class="fly-link">申请友链</a>
-						<dd>
+						<dd><a href="javascript:void(0)" target="_blank">layui</a><dd>
+						<dd><a href="javascript:void(0)" target="_blank">WebIM</a><dd>
+						<dd><a href="javascript:void(0)" target="_blank">layer</a><dd>
+						<dd><a href="javascript:void(0)" target="_blank">layDate</a><dd>
+						<dd><a href="javascript:void(0)" class="fly-link">申请友链</a><dd>
 					</dl>
 				</div>
 			</div>
@@ -304,31 +226,8 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="menu/footer.jsp"></jsp:include>	
+	<jsp:include page="common/footer.jsp"></jsp:include>	
 	
-	<script src="res/layui/layui.js"></script>
-	<script>
-		layui.cache.page = '';
-		layui.cache.user = {
-			username : '游客',
-			uid : -1,
-			avatar : 'res/images/avatar/00.jpg',
-			experience : 83,
-			sex : '男'
-		};
-		layui.config({
-			version : "3.0.0",
-			base : 'res/mods/' //这里实际使用时，建议改成绝对路径
-		}).extend({
-			fly : 'index'
-		}).use('fly');
-	</script>
-
-	<script type="text/javascript">
-		var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-		document.write(unescape("%3Cspan id='cnzz_stat_icon_30088308'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D30088308' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-
 </body>
 
 </html>
