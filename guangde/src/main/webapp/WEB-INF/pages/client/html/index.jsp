@@ -143,7 +143,7 @@
 					
 					<div style="text-align: center">
 						<div class="laypage-main">
-							<a href="jie/index.html" class="laypage-next">更多求解</a>
+							<a href="article/index.do" class="laypage-next">更多求解</a>
 						</div>
 					</div>
 					
@@ -201,26 +201,10 @@
 				<jsp:include page="common/list-hot.jsp"></jsp:include>
 
 				<!-- 广告 -->
-				<div class="fly-panel">
-					<div class="fly-panel-title">广告</div>
-					<div class="fly-panel-main">
-						<a href="javascript:void(0)" target="_blank"
-							class="fly-zanzhu" time-limit="2017.09.25-2099.01.01"
-							style="background-color: #5FB878;">LayIM 3.0 - layui 旗舰之作</a>
-					</div>
-				</div>
+				<jsp:include page="ad/ad.jsp"></jsp:include>
 				
 				<!-- 友情链接 -->
-				<div class="fly-panel fly-link">
-					<h3 class="fly-panel-title">友情链接</h3>
-					<dl class="fly-panel-main">
-						<dd><a href="javascript:void(0)" target="_blank">layui</a><dd>
-						<dd><a href="javascript:void(0)" target="_blank">WebIM</a><dd>
-						<dd><a href="javascript:void(0)" target="_blank">layer</a><dd>
-						<dd><a href="javascript:void(0)" target="_blank">layDate</a><dd>
-						<dd><a href="javascript:void(0)" class="fly-link">申请友链</a><dd>
-					</dl>
-				</div>
+				<jsp:include page="ad/link.jsp"></jsp:include>
 			</div>
 		</div>
 	</div>

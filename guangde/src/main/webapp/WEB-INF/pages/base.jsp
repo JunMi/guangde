@@ -6,3 +6,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <base href="<%=basePath%>">
 <link rel="stylesheet" href="res/layui/css/layui.css">
 <link rel="stylesheet" href="res/css/global.css">
+
+<script src="res/layui/layui.js"></script>
