@@ -1,12 +1,24 @@
 package com.guangde.controller;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.guangde.dao.IUserDao;
+import com.guangde.vo.User;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
+	
+	@Autowired
+	private IUserDao userDao;
 	
 	@RequestMapping("/login.do")
 	public ModelAndView login(String param){
@@ -55,6 +67,22 @@ public class UserController {
 		model.setViewName("client/html/user/activate");
 		return model;
 	}
+	
+	@RequestMapping("doLogin.do")
+	public boolean doLogin(HttpServletRequest request,HttpServletResponse response){
+		HashMap<String, String> params = new HashMap<String, String>();
+		boolean flag=false;
+		params.put("userName", request.getParameter("userName"));
+		params.put("password", request.getParameter("password"));
+		User user = userDao.userLogin(params);
+		if(null!=user){
+			flag=true;
+		}else{
+			flag=false;
+		}
+		return flag;
+	}
+	
 	
 	
 }

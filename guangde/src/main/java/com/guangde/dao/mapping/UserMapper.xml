@@ -9,6 +9,11 @@
 		FROM USERS T WHERE T.USERID=#{userId}
 	</select>
 
+	<select id="userLogin" parameterType="java.util.HashMap" resultType="com.guangde.vo.User">
+		SELECT *
+		FROM USERS T WHERE T.USERNAME=#{userName} AND T.PASSWORD=#{password}
+	</select>
+	
 	<!--新增用户 -->
 	<insert id="insertUser" parameterType="com.guangde.vo.User">
 		INSERT INTO

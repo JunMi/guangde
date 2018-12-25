@@ -1,10 +1,14 @@
 package com.guangde.service;
 
+import java.util.HashMap;
+
 import com.guangde.vo.User;
 
 public interface IUserService {
 	public User getUserById(String userid);
-
+	
+	public User userLogin(HashMap<String, String> params);
+	
 	public int updateUser(User user);
 
 	public int deleteUserById(String userid);
