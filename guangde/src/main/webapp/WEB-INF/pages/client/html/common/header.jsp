@@ -18,7 +18,7 @@
 		<ul class="layui-nav fly-nav-user">
 
 			<!-- 未登入的状态 -->
-			<!-- <li class="layui-nav-item"><a
+			 <li class="layui-nav-item"><a
 				class="iconfont icon-touxiang layui-hide-xs"
 				href="../user/login.html"></a></li>
 			<li class="layui-nav-item"><a href="user/login.do?param=login">登入</a></li>
@@ -28,11 +28,11 @@
 				title="QQ登入" class="iconfont icon-qq"></a></li>
 			<li class="layui-nav-item layui-hide-xs"><a href=""
 				onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})"
-				title="微博登入" class="iconfont icon-weibo"></a></li> -->
+				title="微博登入" class="iconfont icon-weibo"></a></li> 
 
 			<!-- 登入后的状态 -->
 			
-   			  <li class="layui-nav-item">
+   			  <!-- <li class="layui-nav-item">
 		        <a class="fly-nav-avatar" href="javascript:;">
 		          <cite class="layui-hide-xs">贤心</cite>
 		          <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
@@ -46,7 +46,7 @@
 		          <hr style="margin: 5px 0;">
 		          <dd><a href="/user/logout/" style="text-align: center;">退出</a></dd>
 		        </dl>
-		      </li>
+		      </li> -->
      
 		</ul>
 	</div>

@@ -12,7 +12,7 @@
 	</p>
 </div>
 
-<script src="res/layui/layui.js"></script>
+<!-- <script src="res/layui/layui.js"></script>
 <script>
 	layui.cache.page = '';
 	layui.cache.user = {
@@ -28,7 +28,7 @@
 	}).extend({
 		fly : 'index'
 	}).use('fly');
-</script>
+</script> -->
 
 <!-- <script type="text/javascript">
 	var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");

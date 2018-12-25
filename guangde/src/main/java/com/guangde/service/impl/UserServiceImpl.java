@@ -1,5 +1,7 @@
 package com.guangde.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,13 @@ public class UserServiceImpl implements IUserService {
 		User user = userDao.getUserById(userid);
 		return user;
 	}
+
+	@Override
+	public User getUserLogin(HashMap<String, String> params) {
+		User user = userDao.getUserLogin(params);
+		return user;
+	}
+
 
 	@Override
 	public int updateUser(User user) {
