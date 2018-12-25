@@ -2,7 +2,7 @@
 
 <div class="fly-header layui-bg-black">
 	<div class="layui-container">
-		<a class="fly-logo" href="javascript:void(0)"> <img
+		<a class="fly-logo" href="index.do"> <img
 			src="res/images/logo.png" alt="layui">
 		</a>
 		<!-- <ul class="layui-nav fly-nav layui-hide-xs">
