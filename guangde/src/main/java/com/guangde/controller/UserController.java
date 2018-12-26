@@ -3,17 +3,17 @@ package com.guangde.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.guangde.dao.IUserDao;
 import com.guangde.vo.User;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 	
@@ -23,12 +23,12 @@ public class UserController {
 	@RequestMapping("/login.do")
 	public ModelAndView login(String param){
 		ModelAndView model = new ModelAndView();
-		if("login".equals(param)){
-			model.setViewName("client/html/user/login");
-		}else if("reg".equals(param)){
+		if("reg".equals(param)){
 			model.setViewName("client/html/user/reg");
 		}else if("forget".equals(param)){
 			model.setViewName("client/html/user/forget");
+		}else{
+			model.setViewName("client/html/user/login");
 		}
 		return model;
 	}
@@ -69,20 +69,26 @@ public class UserController {
 	}
 	
 	@RequestMapping("/doLogin.do")
-	public boolean doLogin(HttpServletRequest request,HttpServletResponse response){
+	public String doLogin(HttpSession session,HttpServletRequest request){
 		HashMap<String, String> params = new HashMap<String, String>();
-		boolean flag=false;
 		params.put("email", request.getParameter("email"));
 		params.put("pass", request.getParameter("pass"));
 		User user = userDao.getUserLogin(params);
-		
-		if(null!=user){   
-			flag=true;
+		session.setAttribute("user", user);
+		if(null!=user){
+			//首页
+			return "redirect:/index.do";
 		}else{
-			flag=false;
+			return "redirect:login.do";
 		}
-		return flag;
 	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session,HttpServletRequest request){
+		session.removeAttribute("user");
+		return "redirect:/index.do";
+	}
+	
 	
 	
 	
