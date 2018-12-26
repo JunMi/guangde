@@ -75,7 +75,8 @@ public class UserController {
 		params.put("email", request.getParameter("email"));
 		params.put("pass", request.getParameter("pass"));
 		User user = userDao.getUserLogin(params);
-		if(null!=user){
+		
+		if(null!=user){   
 			flag=true;
 		}else{
 			flag=false;
