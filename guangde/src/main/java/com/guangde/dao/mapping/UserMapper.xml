@@ -10,15 +10,20 @@
 	</select>
 
 	<select id="getUserLogin" parameterType="java.util.HashMap" resultType="com.guangde.vo.User">
-		SELECT T.USERID,T.USERNAME,T.PASSWORD,T.FULLNAME,T.EMAIL
-		FROM USERS T WHERE T.EMAIL=#{email} AND T.PASSWORD=#{pass}
+		SELECT T.USERID,T.NICKNAME,T.PASSWORD,T.FULLNAME,T.EMAIL
+		FROM USERS T WHERE T.EMAIL=#{email} AND T.PASSWORD=#{password}
+	</select>
+	
+	<select id="queryUserByNickname" parameterType="java.lang.String" resultType="com.guangde.vo.User">
+		SELECT T.*
+		FROM USERS T WHERE T.NICKNAME=#{nickName}
 	</select>
 	
 	<!--新增用户 -->
 	<insert id="insertUser" parameterType="com.guangde.vo.User">
 		INSERT INTO
-		USERS(USERID,USERNAME,PASSWORD,FULLNAME,EMAIL)
-		VALUES(#{userId},#{userName},#{password},#{fullName},#{email})
+		USERS(USERID,NICKNAME,PASSWORD,EMAIL)
+		VALUES(sys_guid(),#{nickName},#{password},#{email})
 	</insert>
 
 	<!--编辑用户 -->

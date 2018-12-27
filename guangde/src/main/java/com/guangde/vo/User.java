@@ -3,10 +3,13 @@ package com.guangde.vo;
 public class User {
 
 	private String userId;
-	private String userName;
+	private String nickName;
 	private String password;
 	private String fullName;
 	private String email;
+	private String mobile;
+	private String isValidate;
+	
 
 	public String getUserId() {
 		return userId;
@@ -16,12 +19,12 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getPassword() {
@@ -48,4 +51,19 @@ public class User {
 		this.email = email;
 	}
 
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getIsValidate() {
+		return isValidate;
+	}
+
+	public void setIsValidate(String isValidate) {
+		this.isValidate = isValidate;
+	}
 }

@@ -32,7 +32,7 @@
 								<div class="layui-form-item">
 									<label for="L_pass" class="layui-form-label">密码</label>
 									<div class="layui-input-inline">
-										<input type="password" id="L_pass" name="pass" required
+										<input type="password" id="L_pass" name="password" required
 											lay-verify="required" autocomplete="off" class="layui-input">
 									</div>
 								</div>
@@ -67,9 +67,9 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- footer -->
-	<%-- <jsp:include page="../common/footer.jsp"></jsp:include>	 --%>
+	 <jsp:include page="../common/footer.jsp"></jsp:include>	 
 
 	<script type="text/javascript">
 		layui.use([ 'layer', 'form','user'], function() {
@@ -81,7 +81,7 @@
 		});
 		
 	//	layui.cache.page = '';
-		layui.cache.user = {
+		/* layui.cache.user = {
 			username : '游客',
 			uid : -1,
 			avatar : 'res/images/avatar/00.jpg',
@@ -93,7 +93,7 @@
 			base : 'res/mods/' //这里实际使用时，建议改成绝对路径
 		}).extend({
 			fly : 'index'
-		}).use('fly');
+		}).use('fly'); */
 	</script>
 </body>
 </html>

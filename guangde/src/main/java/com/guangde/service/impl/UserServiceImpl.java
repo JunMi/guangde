@@ -1,6 +1,7 @@
 package com.guangde.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class UserServiceImpl implements IUserService {
 		return user;
 	}
 
+	@Override
+	public List<User> queryUserByNickname(String nickName) {
+		List<User> list = userDao.queryUserByNickname(nickName);
+		return list;
+	}
 
 	@Override
 	public int updateUser(User user) {
