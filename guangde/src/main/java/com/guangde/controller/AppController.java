@@ -21,7 +21,7 @@ public class AppController {
 	private static Logger logger = Logger.getLogger(AppController.class);
 	
 	
-	@RequestMapping("index.do")
+	@RequestMapping("index")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("client/html/index");
 		
@@ -31,14 +31,14 @@ public class AppController {
 		return model;
 	}
 	
-	@RequestMapping("/getUser.do")
+	@RequestMapping("/getUser")
 	public User getUser(String userid){
 		User user = userService.getUserById(userid);
 		logger.info("添加日志-->用户名字："+user.getFullName());
 		return user;
 	}
 	
-	@RequestMapping("/updateUser.do")
+	@RequestMapping("/updateUser")
 	public int updateUser(String userid){
 		User user = userService.getUserById(userid);
 		if(user==null)
@@ -47,7 +47,7 @@ public class AppController {
 		return userService.updateUser(user);
 	}
 	
-	@RequestMapping("/insertUser.do")
+	@RequestMapping("/insertUser")
 	public int insertUser(String userid){
 		User user = new User();
 		user.setUserId("ids");
@@ -55,7 +55,7 @@ public class AppController {
 		return userService.insertUser(user);
 	}
 	
-	@RequestMapping("/deleteUserById.do")
+	@RequestMapping("/deleteUserById")
 	public int deleteUserById(String userid){
 		return userService.deleteUserById(userid);
 	}
