@@ -12,16 +12,16 @@
 	
 	<div class="layui-container fly-marginTop fly-user-main">
 		<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-			<li class="layui-nav-item"><a href="user/home.do"> <i
+			<li class="layui-nav-item"><a href="user/home"> <i
 					class="layui-icon">&#xe609;</i> 我的主页
 			</a></li>
-			<li class="layui-nav-item layui-this"><a href="user/index.do">
+			<li class="layui-nav-item layui-this"><a href="user/index">
 					<i class="layui-icon">&#xe612;</i> 用户中心
 			</a></li>
-			<li class="layui-nav-item"><a href="user/set.do"> <i
+			<li class="layui-nav-item"><a href="user/set"> <i
 					class="layui-icon">&#xe620;</i> 基本设置
 			</a></li>
-			<li class="layui-nav-item"><a href="user/message.do"> <i
+			<li class="layui-nav-item"><a href="user/message"> <i
 					class="layui-icon">&#xe611;</i> 我的消息
 			</a></li>
 		</ul>
@@ -39,7 +39,7 @@
 		<div class="fly-panel fly-panel-user" pad20>
 
 			<!-- <div class="fly-msg" style="margin-top: 15px;">
-				您的邮箱尚未验证，这比较影响您的帐号安全，<a href="user/activate.do">立即去激活？</a>
+				您的邮箱尚未验证，这比较影响您的帐号安全，<a href="user/activate">立即去激活？</a>
 			</div> -->
 
 			<div class="layui-tab layui-tab-brief" lay-filter="user">

@@ -8,8 +8,38 @@ public class User {
 	private String fullName;
 	private String email;
 	private String mobile;
-	private String isValidate;
-	
+	/**
+	 * 城市
+	 */
+	private String fromCity;
+	/**
+	 * 签名
+	 */
+	private String sign;
+	/**
+	 * 性别 0-男，1-女
+	 */
+	private int gender;
+	/**
+	 * 邮箱是否认证 0-否 1-是
+	 */
+	private int validateEmail;
+	/**
+	 * 用户是否认证 0-否 1-是
+	 */
+	private int validateUser;
+	/**
+	 * 可用积分
+	 */
+	private int starts;
+	/**
+	 * 认证信息
+	 */
+	private String validateInfo;
+	/**
+	 * 创建时间
+	 */
+	private String createdate;
 
 	public String getUserId() {
 		return userId;
@@ -59,11 +89,68 @@ public class User {
 		this.mobile = mobile;
 	}
 
-	public String getIsValidate() {
-		return isValidate;
+	public String getFromCity() {
+		return fromCity;
 	}
 
-	public void setIsValidate(String isValidate) {
-		this.isValidate = isValidate;
+	public void setFromCity(String fromCity) {
+		this.fromCity = fromCity;
 	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
+
+	public int getValidateEmail() {
+		return validateEmail;
+	}
+
+	public void setValidateEmail(int validateEmail) {
+		this.validateEmail = validateEmail;
+	}
+
+	public int getValidateUser() {
+		return validateUser;
+	}
+
+	public void setValidateUser(int validateUser) {
+		this.validateUser = validateUser;
+	}
+
+	public int getStarts() {
+		return starts;
+	}
+
+	public void setStarts(int starts) {
+		this.starts = starts;
+	}
+
+	public String getValidateInfo() {
+		return validateInfo;
+	}
+
+	public void setValidateInfo(String validateInfo) {
+		this.validateInfo = validateInfo;
+	}
+
+	public String getCreatedate() {
+		return createdate;
+	}
+
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
+	}
+
 }

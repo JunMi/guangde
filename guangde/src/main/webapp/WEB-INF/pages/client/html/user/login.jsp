@@ -15,13 +15,13 @@
 			<div class="layui-tab layui-tab-brief" lay-filter="user">
 				<ul class="layui-tab-title">
 					<li class="layui-this">登入</li>
-					<li><a href="user/login.do?param=reg">注册</a></li>
+					<li><a href="user/login?param=reg">注册</a></li>
 				</ul>
 				<div class="layui-form layui-tab-content" id="LAY_ucm"
 					style="padding: 20px 0;">
 					<div class="layui-tab-item layui-show">
 						<div class="layui-form layui-form-pane">
-							<form method="post" action="user/doLogin.do">
+							<form method="post" action="user/doLogin">
 								<div class="layui-form-item">
 									<label for="L_email" class="layui-form-label">邮箱</label>
 									<div class="layui-input-inline">
@@ -50,7 +50,7 @@
 								<div class="layui-form-item">
 									<button class="layui-btn" lay-filter="userLogin" lay-submit>立即登录</button>
 									<span style="padding-left:20px;"> <a
-										href="user/login.do?param=forget">忘记密码？</a>
+										href="user/login?param=forget">忘记密码？</a>
 									</span>
 								</div>
 								<div class="layui-form-item fly-form-app">

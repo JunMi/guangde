@@ -143,7 +143,7 @@
 					
 					<div style="text-align: center">
 						<div class="laypage-main">
-							<a href="article/index.do" class="laypage-next">更多求解</a>
+							<a href="article/index" class="laypage-next">更多求解</a>
 						</div>
 					</div>
 					
@@ -182,13 +182,13 @@
 					<dl>
 						<!--<i class="layui-icon fly-loading">&#xe63d;</i>-->
 						<dd>
-							<a href="user/home.do"> 
+							<a href="user/home"> 
 								<img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
 								<cite>贤心</cite><i>106次回答</i>
 							</a>
 						</dd>
 						<dd>
-							<a href="user/home.do">
+							<a href="user/home">
 								<img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
 								<cite>贤心</cite><i>10次回答</i>
 							</a>

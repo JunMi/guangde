@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	private IUserDao userDao;
 
-	@RequestMapping("/login.do")
+	@RequestMapping("/login")
 	public ModelAndView login(String param) {
 		ModelAndView model = new ModelAndView();
 		if ("reg".equals(param)) {
@@ -40,42 +40,42 @@ public class UserController {
 		return model;
 	}
 
-	@RequestMapping("/home.do")
+	@RequestMapping("/home")
 	public ModelAndView home() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/home");
 		return model;
 	}
 
-	@RequestMapping("/set.do")
+	@RequestMapping("/set")
 	public ModelAndView seting() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/set");
 		return model;
 	}
 
-	@RequestMapping("/message.do")
+	@RequestMapping("/message")
 	public ModelAndView message() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/message");
 		return model;
 	}
 
-	@RequestMapping("/index.do")
+	@RequestMapping("/index")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/index");
 		return model;
 	}
 
-	@RequestMapping("/activate.do")
+	@RequestMapping("/activate")
 	public ModelAndView activate() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/activate");
 		return model;
 	}
 
-	@RequestMapping(value = "/doLogin.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
 	public String doLogin(HttpSession session, HttpServletRequest request) {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("email", request.getParameter("email"));
@@ -84,19 +84,19 @@ public class UserController {
 		session.setAttribute("user", user);
 		if (null != user) {
 			// 首页
-			return "redirect:/index.do";
+			return "redirect:/index";
 		} else {
-			return "redirect:login.do";
+			return "redirect:login";
 		}
 	}
 
-	@RequestMapping("/logout.do")
+	@RequestMapping("/logout")
 	public String logout(HttpSession session, HttpServletRequest request) {
 		session.removeAttribute("user");
-		return "redirect:/index.do";
+		return "redirect:/index";
 	}
 
-	@RequestMapping("/queryUser.do")
+	@RequestMapping("/queryUser")
 	@ResponseBody
 	public ResultUtil queryUserByNickname(String nickName) {
 		if (StringUtils.isEmpty(nickName)) {
@@ -111,14 +111,14 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/doReg.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/doReg", method = RequestMethod.POST)
 	public String doReg(HttpSession session, HttpServletRequest request) {
 		
 		User user = BeanUtil.getBean(request, User.class);
 		int row = userDao.insertUser(user);
 
 		// 注册成功
-		return "redirect:login.do";
+		return "redirect:login";
 	}
 
 }

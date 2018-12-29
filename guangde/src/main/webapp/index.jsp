@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <body>
 <script type="text/javascript">
-window.location.href='<%=basePath%>index.do';
+window.location.href='<%=basePath%>index';
 </script>
 </body>
 </html>

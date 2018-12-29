@@ -20,7 +20,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 	<!-- 2.spring配置 :配置ContextLoaderListener表示，该工程要以spring的方式启动.启动时会默认在/WEB-INF目录下查找applicationContext.xml 

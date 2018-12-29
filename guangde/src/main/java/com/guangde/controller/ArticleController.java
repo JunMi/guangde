@@ -8,21 +8,21 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/article")
 public class ArticleController {
 
-	@RequestMapping("/index.do")
+	@RequestMapping("/index")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/jie/index");
 		return model;
 	}
 
-	@RequestMapping("/add.do")
+	@RequestMapping("/add")
 	public ModelAndView add() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/jie/add");
 		return model;
 	}
 
-	@RequestMapping("/detail.do")
+	@RequestMapping("/detail")
 	public ModelAndView detail() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/jie/detail");

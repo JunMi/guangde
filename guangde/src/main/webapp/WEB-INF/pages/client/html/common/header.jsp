@@ -3,7 +3,7 @@
 <%@ page isELIgnored="false" %>
 <div class="fly-header layui-bg-black">
 	<div class="layui-container">
-		<a class="fly-logo" href="index.do"> <img
+		<a class="fly-logo" href="index"> <img
 			src="res/images/logo.png" alt="layui">
 		</a>
 		<!-- <ul class="layui-nav fly-nav layui-hide-xs">
@@ -22,8 +22,8 @@
 					<!-- 未登入的状态 -->
 					<li class="layui-nav-item">
 						<a class="iconfont icon-touxiang layui-hide-xs" href="../user/login.html"></a></li>
-					<li class="layui-nav-item"><a href="user/login.do?param=login">登入</a></li>
-					<li class="layui-nav-item"><a href="user/login.do?param=reg">注册</a></li>
+					<li class="layui-nav-item"><a href="user/login?param=login">登入</a></li>
+					<li class="layui-nav-item"><a href="user/login?param=reg">注册</a></li>
 					<li class="layui-nav-item layui-hide-xs">
 						<a href="" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})"
 						title="QQ登入" class="iconfont icon-qq"></a></li>
@@ -41,11 +41,11 @@
 				          <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
 				        </a>
 				        <dl class="layui-nav-child">
-				          <dd><a href="user/set.do"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
-				          <dd><a href="user/message.do"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
-				          <dd><a href="user/home.do"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
+				          <dd><a href="user/set"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
+				          <dd><a href="user/message"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
+				          <dd><a href="user/home"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
 				          <hr style="margin: 5px 0;">
-				          <dd><a href="user/logout.do" style="text-align: center;">退出</a></dd>
+				          <dd><a href="user/logout" style="text-align: center;">退出</a></dd>
 				        </dl>
 				      </li>
 				</c:otherwise>

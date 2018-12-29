@@ -11,16 +11,16 @@
 	
 	<div class="layui-container fly-marginTop fly-user-main">
 		<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-			<li class="layui-nav-item"><a href="user/home.do"> <i
+			<li class="layui-nav-item"><a href="user/home"> <i
 					class="layui-icon">&#xe609;</i> 我的主页
 			</a></li>
-			<li class="layui-nav-item"><a href="user/index.do"> <i
+			<li class="layui-nav-item"><a href="user/index"> <i
 					class="layui-icon">&#xe612;</i> 用户中心
 			</a></li>
-			<li class="layui-nav-item layui-this"><a href="user/set.do">
+			<li class="layui-nav-item layui-this"><a href="user/set">
 					<i class="layui-icon">&#xe620;</i> 基本设置
 			</a></li>
-			<li class="layui-nav-item"><a href="user/message.do"> <i
+			<li class="layui-nav-item"><a href="user/message"> <i
 					class="layui-icon">&#xe611;</i> 我的消息
 			</a></li>
 		</ul>
@@ -55,7 +55,7 @@
 										class="layui-input">
 								</div>
 								<div class="layui-form-mid layui-word-aux">
-									如果您在邮箱已激活的情况下，变更了邮箱，需<a href="user/activate.do"
+									如果您在邮箱已激活的情况下，变更了邮箱，需<a href="user/activate"
 										style="font-size: 12px; color: #4f99cf;">重新验证邮箱</a>。
 								</div>
 							</div>

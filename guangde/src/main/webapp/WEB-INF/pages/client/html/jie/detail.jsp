@@ -49,11 +49,11 @@
         </div>
         
         <div class="detail-about">
-          <a class="fly-avatar" href="user/home.do">
+          <a class="fly-avatar" href="user/home">
             <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
           </a>
           <div class="fly-detail-user">
-            <a href="user/home.do" class="fly-link">
+            <a href="user/home" class="fly-link">
               <cite>贤心</cite>
               <i class="iconfont icon-renzheng" title="认证信息：{{ rows.user.approve }}"></i>
               <i class="layui-badge fly-badge-vip">VIP3</i>

@@ -14,14 +14,14 @@
 		<div class="fly-panel fly-panel-user" pad20>
 			<div class="layui-tab layui-tab-brief" lay-filter="user">
 				<ul class="layui-tab-title">
-					<li><a href="user/login.do?param=login">登入</a></li>
+					<li><a href="user/login?param=login">登入</a></li>
 					<li class="layui-this">注册</li>
 				</ul>
 				<div class="layui-form layui-tab-content" id="LAY_ucm"
 					style="padding: 20px 0;">
 					<div class="layui-tab-item layui-show">
 						<div class="layui-form layui-form-pane">
-							<form method="post" action="user/doReg.do">
+							<form method="post" action="user/doReg">
 								<div class="layui-form-item">
 									<label for="L_email" class="layui-form-label">邮箱</label>
 									<div class="layui-input-inline">
@@ -120,7 +120,7 @@
 			var valideNickName = false;
 			var validePass = false;
 			$("#L_nickName").on('blur', function(e) {
-				$.post('user/queryUser.do',
+				$.post('user/queryUser',
 					{
 						nickName : this.value
 					}, function(res) {
