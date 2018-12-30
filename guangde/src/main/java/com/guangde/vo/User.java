@@ -40,6 +40,10 @@ public class User {
 	 * 创建时间
 	 */
 	private String createdate;
+	/**
+	 * 是否有效用户0-有效，1-无效
+	 */
+	private int isEffective;
 
 	public String getUserId() {
 		return userId;
@@ -151,6 +155,14 @@ public class User {
 
 	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
+	}
+
+	public int getIsEffective() {
+		return isEffective;
+	}
+
+	public void setIsEffective(int isEffective) {
+		this.isEffective = isEffective;
 	}
 
 }

@@ -18,7 +18,11 @@ public interface IUserDao {
 	 */
 	public List<User> queryUserByNickname(String nickName);
 	
+	public int validPass(HashMap<String, String> params);
+	
 	public int updateUser(User user);
+
+	public int updatePassword(User user);
 
 	public int deleteUserById(String user_id);
 	

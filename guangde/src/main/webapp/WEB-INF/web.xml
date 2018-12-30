@@ -6,6 +6,15 @@
 
 	<!-- 配置web.xml，使其具有springmvc特性，主要配置两处，一个是ContextLoaderListener，一个是DispatcherServlet -->
 
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.woff</url-pattern>
+		<url-pattern>/res/**</url-pattern>
+	</servlet-mapping>
+	
 	<!-- spring mvc 配置 -->
 	<!-- 1.配置DispatcherServlet表示，该工程将采用springmvc的方式。 -->
 	<servlet>

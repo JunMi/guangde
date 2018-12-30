@@ -23,6 +23,11 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	public int validPass(HashMap<String, String> params) {
+		return userDao.validPass(params);
+	}
+
+	@Override
 	public User getUserLogin(HashMap<String, String> params) {
 		User user = userDao.getUserLogin(params);
 		return user;
@@ -40,10 +45,15 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	public int updatePassword(User user) {
+		return userDao.updatePassword(user);
+	}
+
+	@Override
 	public int deleteUserById(String userid) {
 		return userDao.deleteUserById(userid);
 	}
-	
+
 	@Override
 	public int insertUser(User user) {
 		return userDao.insertUser(user);

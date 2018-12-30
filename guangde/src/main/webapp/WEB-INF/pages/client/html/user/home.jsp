@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../../base.jsp"></jsp:include>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -15,26 +16,25 @@
 			src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
 			alt="贤心"> <i class="iconfont icon-renzheng" title="Fly社区认证"></i>
 		<h1>
-			贤心 <i class="iconfont icon-nan"></i>
-			<!-- <i class="iconfont icon-nv"></i>  -->
+			${sessionScope.user.nickName}
+			<c:if test="${sessionScope.user.gender==0}"><i class="iconfont icon-nan"></i></c:if>
+			<c:if test="${sessionScope.user.gender==1}"><i class="iconfont icon-nv"></i></c:if>
 			<i class="layui-badge fly-badge-vip">VIP3</i>
-			<!--
-    <span style="color:#c00;">（管理员）</span>
-    <span style="color:#5FB878;">（社区之光）</span>
-    <span>（该号已被封）</span>
-    -->
+	    <!-- <span style="color:#c00;">（管理员）</span> -->
+	    <!-- <span style="color:#5FB878;">（社区之光）</span> -->
+    		<c:if test="${sessionScope.user.isEffective==1}"><span>（该号已被封）</span></c:if>
 		</h1>
 
 		<p style="padding: 10px 0; color: #5FB878;">认证信息：layui 作者</p>
 
 		<p class="fly-home-info">
-			<i class="iconfont icon-kiss" title="飞吻"></i><span
-				style="color: #FF7200;">66666 飞吻</span> <i
-				class="iconfont icon-shijian"></i><span>2015-6-17 加入</span> <i
-				class="iconfont icon-chengshi"></i><span>来自杭州</span>
+			<i class="iconfont icon-kiss" title="积分"></i><span
+				style="color: #FF7200;">${sessionScope.user.starts} 飞吻</span> <i
+				class="iconfont icon-shijian"></i><span>${sessionScope.user.createdate}加入</span> <i
+				class="iconfont icon-chengshi"></i><span>来自${sessionScope.user.fromCity}</span>
 		</p>
 
-		<p class="fly-home-sign">（人生仿若一场修行）</p>
+		<p class="fly-home-sign">（${sessionScope.user.sign}）</p>
 
 		<div class="fly-sns" data-user="">
 			<a href="javascript:;"

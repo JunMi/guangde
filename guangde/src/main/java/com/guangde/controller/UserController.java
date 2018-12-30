@@ -103,22 +103,68 @@ public class UserController {
 			return ResultUtil.fail("参数为空");
 		} else {
 			List<User> list = userDao.queryUserByNickname(nickName);
-			if(CollectionUtils.isEmpty(list)){
+			if (CollectionUtils.isEmpty(list)) {
 				return ResultUtil.ok(true);
-			}else{
+			} else {
 				return ResultUtil.ok(false);
 			}
 		}
 	}
 
 	@RequestMapping(value = "/doReg", method = RequestMethod.POST)
-	public String doReg(HttpSession session, HttpServletRequest request) {
-		
+	@ResponseBody
+	public ResultUtil doReg(HttpSession session, HttpServletRequest request) {
 		User user = BeanUtil.getBean(request, User.class);
 		int row = userDao.insertUser(user);
-
 		// 注册成功
-		return "redirect:login";
+		if (row != 0) {
+			return ResultUtil.ok(true);
+		} else {
+			return ResultUtil.ok(false);
+		}
 	}
 
+	@RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultUtil updateUserInfo(HttpSession session, HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		User source = BeanUtil.getBean(request, User.class);
+		BeanUtil.copyPropertiesIgnorNull(source, user);
+		int row = userDao.updateUser(user);
+		if (row != 0) {
+			session.setAttribute("user", user);
+			return ResultUtil.ok(true);
+		} else {
+			return ResultUtil.ok(false);
+		}
+	}
+
+	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultUtil updatePassword(HttpSession session, HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		String repass = request.getParameter("repass");
+
+		if (!StringUtils.isEmpty(repass) && null != user) {
+			user.setPassword(repass);
+			userDao.updatePassword(user);
+			session.setAttribute("user", user);
+			return ResultUtil.ok(true);
+		} else {
+			return ResultUtil.fail("无效参数");
+		}
+	}
+
+	@RequestMapping(value = "/validPass", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultUtil validPass(HttpSession session, HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("userId", user.getUserId());
+		params.put("password", request.getParameter("repass"));
+		
+		int row = userDao.validPass(params);
+
+		return row == 0 ? ResultUtil.fail(false) : ResultUtil.ok(true);
+	}
 }

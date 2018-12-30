@@ -21,7 +21,7 @@
 					style="padding: 20px 0;">
 					<div class="layui-tab-item layui-show">
 						<div class="layui-form layui-form-pane">
-							<form method="post" action="user/doReg">
+							<form method="post">
 								<div class="layui-form-item">
 									<label for="L_email" class="layui-form-label">邮箱</label>
 									<div class="layui-input-inline">
@@ -105,8 +105,8 @@
 			//自定义验证规则
 			form.verify({
 				nickName : function(value) {
-					if (value.length < 5) {
-						return '昵称至少得5个字符啊';
+					if (value.length < 2) {
+						return '昵称至少得2个字符啊';
 					}
 				},
 				repassword : [
@@ -148,15 +148,21 @@
 	
 			form.on('submit(userReg)', function(data) {
 				if (valideNickName && validePass) {
-					layer.msg('注册成功，即将跳转登录页面...', {
-						icon : 1,
-						time : 3000 //2秒关闭（如果不配置，默认是3秒）
-					});
-				} else {
-					//昵称重复
-					return false;
-				}
-				return valideNickName && validePass;
+					  $.post('user/doReg', data.field, function(result) {
+						if (result.flag) {
+							layer.msg('注册成功，即将跳转登录页面...', {
+								icon : 1,
+								time : 3000 //3秒关闭（如果不配置，默认是3秒）
+							},function(){
+								window.location.href='user/login';
+							});
+						} else {
+							alert('error');
+						}
+					});  
+				} 
+				//阻止form提交表单
+				return false;
 			});
 		});
 	</script>
