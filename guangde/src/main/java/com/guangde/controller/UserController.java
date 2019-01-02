@@ -51,6 +51,7 @@ public class UserController {
 	public ModelAndView seting() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/set");
+		model.addObject("nav", "set");
 		return model;
 	}
 
@@ -58,6 +59,7 @@ public class UserController {
 	public ModelAndView message() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/message");
+		model.addObject("nav", "message");
 		return model;
 	}
 
@@ -65,6 +67,7 @@ public class UserController {
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/index");
+		model.addObject("nav", "index");
 		return model;
 	}
 

@@ -11,31 +11,8 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 
 	<div class="layui-container fly-marginTop fly-user-main">
-		<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-			<li class="layui-nav-item"><a href="user/home"> <i
-					class="layui-icon">&#xe609;</i> 我的主页
-			</a></li>
-			<li class="layui-nav-item"><a href="user/index"> <i
-					class="layui-icon">&#xe612;</i> 用户中心
-			</a></li>
-			<li class="layui-nav-item layui-this"><a href="user/set"> <i
-					class="layui-icon">&#xe620;</i> 基本设置
-			</a></li>
-			<li class="layui-nav-item"><a href="user/message"> <i
-					class="layui-icon">&#xe611;</i> 我的消息
-			</a></li>
-		</ul>
 
-		<div class="site-tree-mobile layui-hide">
-			<i class="layui-icon">&#xe602;</i>
-		</div>
-		<div class="site-mobile-shade"></div>
-
-		<div class="site-tree-mobile layui-hide">
-			<i class="layui-icon">&#xe602;</i>
-		</div>
-		<div class="site-mobile-shade"></div>
-
+		<jsp:include page="../common/user-nav.jsp"></jsp:include>
 
 		<div class="fly-panel fly-panel-user" pad20>
 			<div class="layui-tab layui-tab-brief" lay-filter="user">
@@ -65,7 +42,7 @@
 								<label for="L_nickName" class="layui-form-label">昵称</label>
 								<div class="layui-input-inline">
 									<input type="text" id="L_nickName" name="nickName" required
-										lay-verify="required" autocomplete="off"
+										lay-verify="nickName" autocomplete="off"
 										value="${sessionScope.user.nickName }" class="layui-input">
 								</div>
 								<div class="layui-inline">
@@ -124,11 +101,10 @@
 									<input type="password" id="L_nowpass" name="nowpass" required
 										lay-verify="required" autocomplete="off" class="layui-input">
 								</div>
-								<div id="V_nowpass"
-										style="color:red !important;display: none;"
-										class="layui-form-mid layui-word-aux">
-										<i class="layui-icon">&#xe69c;</i> 密码不正确
-									</div>
+								<div id="V_nowpass" style="color:red !important;display: none;"
+									class="layui-form-mid layui-word-aux">
+									<i class="layui-icon">&#xe69c;</i> 密码不正确
+								</div>
 							</div>
 							<div class="layui-form-item">
 								<label for="L_newpass" class="layui-form-label">新密码</label>
@@ -145,14 +121,14 @@
 										lay-verify="required" autocomplete="off" class="layui-input">
 								</div>
 								<div id="V_repassword"
-										style="color:red !important;display: none;"
-										class="layui-form-mid layui-word-aux">
-										<i class="layui-icon">&#xe69c;</i> 密码不一致
-									</div>
+									style="color:red !important;display: none;"
+									class="layui-form-mid layui-word-aux">
+									<i class="layui-icon">&#xe69c;</i> 密码不一致
+								</div>
 							</div>
 							<div class="layui-form-item">
-								<button class="layui-btn" key="set-mine" lay-filter="updatePassword"
-									lay-submit>确认修改</button>
+								<button class="layui-btn" key="set-mine"
+									lay-filter="updatePassword" lay-submit>确认修改</button>
 							</div>
 						</form>
 					</div>
@@ -181,7 +157,12 @@
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
-		layui.use([ 'layer', 'form', 'jquery' ], function() {
+		
+		layui.use([ 'user' ], function() {
+			var user = layui.user;
+		});
+		
+		/* layui.use([ 'layer', 'form', 'jquery' ], function() {
 			var layer = layui.layer;
 			var form = layui.form;
 			var $ = layui.jquery;
@@ -201,10 +182,10 @@
 					/^[\S]{6,12}$/, '密码必须6到16位，且不能出现空格'
 				]
 			});
-			
+	
 			//我的资料
 			form.on('submit(updateUserInfo)', function(data) {
-				$.post('user/updateUserInfo',data.field,
+				$.post('user/updateUserInfo', data.field,
 					function(result) {
 						if (result.flag) {
 							layer.msg('修改成功', {
@@ -217,14 +198,14 @@
 								time : 3000 //3秒关闭（如果不配置，默认是3秒）
 							});
 						}
-					}); 
+					});
 				//阻止form提交表单
 				return false;
 			});
-			
+	
 			//重置密码
-			var validePass =false;
-			var rePass =false;
+			var validePass = false;
+			var rePass = false;
 			$("#L_repass").on('blur', function(e) {
 				var newpass = $('#L_newpass').val();
 				if (this.value != newpass) {
@@ -237,17 +218,19 @@
 			});
 	
 			$("#L_nowpass").on('blur', function(e) {
-				$.post('user/validPass', {
-					repass : this.value
-				}, function(result) {
-					if (result.flag) {
-						document.getElementById('V_nowpass').style.display = 'none';
-						rePass=true;
-					} else {
-						document.getElementById('V_nowpass').style.display = 'table';
-						rePass=false;
-					}
-				});
+				if (this.value) {
+					$.post('user/validPass', {
+						repass : this.value
+					}, function(result) {
+						if (result.flag) {
+							document.getElementById('V_nowpass').style.display = 'none';
+							rePass = true;
+						} else {
+							document.getElementById('V_nowpass').style.display = 'table';
+							rePass = false;
+						}
+					});
+				}
 			});
 	
 			form.on('submit(updatePassword)', function(data) {
@@ -266,8 +249,8 @@
 				//阻止form提交表单
 				return false;
 			});
-		});
+		}); */
+	
 	</script>
-
 </body>
 </html>
