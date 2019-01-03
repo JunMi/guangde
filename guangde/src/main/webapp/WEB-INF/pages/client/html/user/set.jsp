@@ -86,9 +86,8 @@
 								<button type="button" class="layui-btn upload-img">
 									<i class="layui-icon">&#xe67c;</i>上传头像
 								</button>
-								<img
-									src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
-								<span class="loading"></span>
+
+								<img src="${path}"> <span class="loading"></span>
 							</div>
 						</div>
 					</div>
@@ -157,11 +156,11 @@
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
-		
+	
 		layui.use([ 'user' ], function() {
 			var user = layui.user;
 		});
-		
+	
 		/* layui.use([ 'layer', 'form', 'jquery' ], function() {
 			var layer = layui.layer;
 			var form = layui.form;
@@ -182,7 +181,7 @@
 					/^[\S]{6,12}$/, '密码必须6到16位，且不能出现空格'
 				]
 			});
-	
+		
 			//我的资料
 			form.on('submit(updateUserInfo)', function(data) {
 				$.post('user/updateUserInfo', data.field,
@@ -202,7 +201,7 @@
 				//阻止form提交表单
 				return false;
 			});
-	
+		
 			//重置密码
 			var validePass = false;
 			var rePass = false;
@@ -216,7 +215,7 @@
 					validePass = true;
 				}
 			});
-	
+		
 			$("#L_nowpass").on('blur', function(e) {
 				if (this.value) {
 					$.post('user/validPass', {
@@ -232,7 +231,7 @@
 					});
 				}
 			});
-	
+		
 			form.on('submit(updatePassword)', function(data) {
 				if (validePass && rePass) {
 					$.post('user/updatePassword', data.field, function(result) {
@@ -250,7 +249,6 @@
 				return false;
 			});
 		}); */
-	
 	</script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.guangde.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,14 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.guangde.common.FileUtils;
 import com.guangde.dao.IUserDao;
+import com.guangde.service.IAttachmentService;
 import com.guangde.utils.BeanUtil;
 import com.guangde.utils.ResultUtil;
+import com.guangde.vo.Attachment;
 import com.guangde.vo.User;
 
 @Controller
@@ -26,6 +33,8 @@ public class UserController {
 
 	@Autowired
 	private IUserDao userDao;
+	@Autowired
+	private IAttachmentService attachmentService;
 
 	@RequestMapping("/login")
 	public ModelAndView login(String param) {
@@ -48,10 +57,13 @@ public class UserController {
 	}
 
 	@RequestMapping("/set")
-	public ModelAndView seting() {
+	public ModelAndView seting(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/set");
 		model.addObject("nav", "set");
+		User user = (User) session.getAttribute("user");
+		Attachment attachment = attachmentService.queryAttachment(0, user.getUserId()).get(0);
+		model.addObject("path", attachment.getPath());
 		return model;
 	}
 
@@ -114,6 +126,21 @@ public class UserController {
 		}
 	}
 
+	@RequestMapping("/getUser/{userid}")
+	@ResponseBody
+	public ResultUtil getUserById(@PathVariable String userid) {
+		if (StringUtils.isEmpty(userid)) {
+			return ResultUtil.fail("参数为空");
+		} else {
+			User user = userDao.getUserById(userid);
+			if (null != user) {
+				return ResultUtil.ok(user);
+			} else {
+				return ResultUtil.fail("没有相关用户");
+			}
+		}
+	}
+
 	@RequestMapping(value = "/doReg", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultUtil doReg(HttpSession session, HttpServletRequest request) {
@@ -165,9 +192,32 @@ public class UserController {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("userId", user.getUserId());
 		params.put("password", request.getParameter("repass"));
-		
+
 		int row = userDao.validPass(params);
 
 		return row == 0 ? ResultUtil.fail(false) : ResultUtil.ok(true);
 	}
+
+	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultUtil uploadPhoto(HttpSession session, HttpServletRequest request, MultipartFile file) {
+		User user = (User) session.getAttribute("user");
+		try {
+			if (user != null) {
+				Attachment attachment = FileUtils.uploadFile(file, new File("photo"), request);
+				attachment.setRelationId(user.getUserId());
+				attachment.setType(0);
+				attachmentService.deleteAttachment(0, user.getUserId());
+				attachmentService.insertAttachment(attachment);
+			} else {
+				return ResultUtil.fail("用户未登录");
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ResultUtil.ok(true);
+	}
+
 }

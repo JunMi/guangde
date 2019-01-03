@@ -25,10 +25,15 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 
-	<!--配置文件上传解析器 -->
+	<!--SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
 	<!--Spring MVC默认不能识别multipart格式的文件内容 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 指定所上传文件的总大小不能超过500KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和。 这个的大小是以字节为单位的，要多大自己算好了再设置 -->
+		<property name="maxUploadSize" value="500000" />
+		<!-- 最大内存大小 (10240) -->
+		<property name="maxInMemorySize" value="40960" />
 	</bean>
 
 </beans>

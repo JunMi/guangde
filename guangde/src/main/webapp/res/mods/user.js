@@ -5,11 +5,11 @@ layui.define([ 'layer', 'form' ], function(exports) {
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
-	
+	var upload = layui.upload;
 
 	layer.msg('Hello~~~!');
 
-	
+
 	//自定义验证规则
 	form.verify({
 		nickName : function(value) {
@@ -94,6 +94,7 @@ layui.define([ 'layer', 'form' ], function(exports) {
 		return false;
 	});
 
+
 	//上传头像
 	if ($('.upload-img')[0]) {
 		layui.use('upload', function(upload) {
@@ -101,20 +102,20 @@ layui.define([ 'layer', 'form' ], function(exports) {
 
 			upload.render({
 				elem : '.upload-img',
-				url : '/user/upload/',
+				url : 'user/uploadPhoto',
 				size : 50,
 				before : function() {
 					avatarAdd.find('.loading').show();
 				},
 				done : function(res) {
-					if (res.status == 0) {
-						$.post('/user/set/', {
-							avatar : res.url
+					if (res.flag) {
+						$.post('user/set', {
+							//avatar : res.url
 						}, function(res) {
 							location.reload();
 						});
 					} else {
-						layer.msg(res.msg, {
+						layer.msg(res.data, {
 							icon : 5
 						});
 					}

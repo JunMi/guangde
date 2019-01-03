@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.guangde.dao.IAttachmentDao">
+
+	<!--新增 -->
+	<insert id="insertAttachment" parameterType="com.guangde.vo.Attachment">
+		INSERT INTO
+		ATTACHMENT
+		(ID,RELATIONID,TYPE,PATH,FILETYPE,FILENAME)
+		VALUES(SYS_GUID(),#{relationId},#{type},#{path},#{fileType},#{fileName})
+	</insert>
+	
+	<delete id="deleteAttachment" parameterType="java.util.HashMap">
+		DELETE FROM ATTACHMENT
+		WHERE RELATIONID=#{relationId} AND TYPE=#{type}
+	</delete>
+	
+	<select id="queryAttachment" parameterType="java.util.HashMap"
+		resultType="com.guangde.vo.Attachment">
+		SELECT T.*
+		FROM ATTACHMENT T WHERE
+		T.RELATIONID=#{relationId} AND T.TYPE=#{type}
+	</select>
+</mapper>
