@@ -82,11 +82,11 @@ public class BeanUtil extends BeanUtils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return obj;
 	}
 
-	public static void copyPropertiesIgnorNull(Object source, Object target, String... ignoreProperties) throws BeansException {
+	public static void copyPropertiesIgnorNull(Object source, Object target, String... ignoreProperties)
+			throws BeansException {
 		copyProperties(source, target, null, ignoreProperties);
 	}
 
@@ -126,7 +126,7 @@ public class BeanUtil extends BeanUtils {
 								}
 								writeMethod.invoke(target, value);
 							}
-							
+
 						} catch (Throwable ex) {
 							throw new FatalBeanException(
 									"Could not copy property '" + targetPd.getName() + "' from source to target", ex);

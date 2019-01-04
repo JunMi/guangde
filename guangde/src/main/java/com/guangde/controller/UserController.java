@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import com.guangde.service.IAttachmentService;
 import com.guangde.service.IUserService;
@@ -32,6 +32,8 @@ import com.guangde.vo.User;
 @RequestMapping("/user")
 public class UserController {
 
+	private static Logger logger = Logger.getLogger(UserController.class);
+	
 	@Autowired
 	private IUserService userService;
 	@Autowired
@@ -220,9 +222,11 @@ public class UserController {
 				return ResultUtil.fail("用户未登录");
 			}
 		} catch (IllegalStateException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			logger.error(e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return ResultUtil.ok(true);
 	}

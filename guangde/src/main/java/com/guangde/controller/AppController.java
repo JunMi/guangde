@@ -27,7 +27,7 @@ public class AppController {
 		
 		model.addObject("test", "mjwu");
 		model.addObject("date", new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(new Date()));
-		logger.info("index-->");
+		logger.info("index-->APP应用首页");
 		return model;
 	}
 	
