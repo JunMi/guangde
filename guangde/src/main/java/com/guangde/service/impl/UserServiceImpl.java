@@ -28,7 +28,10 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public User getUserLogin(HashMap<String, String> params) {
+	public User getUserLogin(String email,String password) {
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("email", email);
+		params.put("password", password);
 		User user = userDao.getUserLogin(params);
 		return user;
 	}

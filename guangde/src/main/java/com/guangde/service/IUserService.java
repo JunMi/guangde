@@ -8,7 +8,7 @@ import com.guangde.vo.User;
 public interface IUserService {
 	public User getUserById(String userid);
 
-	public User getUserLogin(HashMap<String, String> params);
+	public User getUserLogin(String email,String password);
 
 	public List<User> queryUserByNickname(String nickName);
 

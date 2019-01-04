@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.guangde.common.FileUtils;
-import com.guangde.dao.IUserDao;
 import com.guangde.service.IAttachmentService;
+import com.guangde.service.IUserService;
 import com.guangde.utils.BeanUtil;
+import com.guangde.utils.FileUtils;
 import com.guangde.utils.ResultUtil;
 import com.guangde.vo.Attachment;
 import com.guangde.vo.User;
@@ -32,7 +32,7 @@ import com.guangde.vo.User;
 public class UserController {
 
 	@Autowired
-	private IUserDao userDao;
+	private IUserService userService;
 	@Autowired
 	private IAttachmentService attachmentService;
 
@@ -62,8 +62,10 @@ public class UserController {
 		model.setViewName("client/html/user/set");
 		model.addObject("nav", "set");
 		User user = (User) session.getAttribute("user");
-		Attachment attachment = attachmentService.queryAttachment(0, user.getUserId()).get(0);
-		model.addObject("path", attachment.getPath());
+		List<Attachment> attachment = attachmentService.queryAttachment(0, user.getUserId());
+		if (!CollectionUtils.isEmpty(attachment)) {
+			model.addObject("userPhoto", attachment.get(0).getPath());
+		}
 		return model;
 	}
 
@@ -92,12 +94,15 @@ public class UserController {
 
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
 	public String doLogin(HttpSession session, HttpServletRequest request) {
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("email", request.getParameter("email"));
-		params.put("password", request.getParameter("password"));
-		User user = userDao.getUserLogin(params);
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		User user = userService.getUserLogin(email, password);
 		session.setAttribute("user", user);
 		if (null != user) {
+			List<Attachment> attachment = attachmentService.queryAttachment(0, user.getUserId());
+			if (!CollectionUtils.isEmpty(attachment)) {
+				session.setAttribute("userPhoto", attachment.get(0).getPath());
+			}
 			// 首页
 			return "redirect:/index";
 		} else {
@@ -117,7 +122,7 @@ public class UserController {
 		if (StringUtils.isEmpty(nickName)) {
 			return ResultUtil.fail("参数为空");
 		} else {
-			List<User> list = userDao.queryUserByNickname(nickName);
+			List<User> list = userService.queryUserByNickname(nickName);
 			if (CollectionUtils.isEmpty(list)) {
 				return ResultUtil.ok(true);
 			} else {
@@ -132,7 +137,7 @@ public class UserController {
 		if (StringUtils.isEmpty(userid)) {
 			return ResultUtil.fail("参数为空");
 		} else {
-			User user = userDao.getUserById(userid);
+			User user = userService.getUserById(userid);
 			if (null != user) {
 				return ResultUtil.ok(user);
 			} else {
@@ -145,7 +150,7 @@ public class UserController {
 	@ResponseBody
 	public ResultUtil doReg(HttpSession session, HttpServletRequest request) {
 		User user = BeanUtil.getBean(request, User.class);
-		int row = userDao.insertUser(user);
+		int row = userService.insertUser(user);
 		// 注册成功
 		if (row != 0) {
 			return ResultUtil.ok(true);
@@ -160,12 +165,12 @@ public class UserController {
 		User user = (User) session.getAttribute("user");
 		User source = BeanUtil.getBean(request, User.class);
 		BeanUtil.copyPropertiesIgnorNull(source, user);
-		int row = userDao.updateUser(user);
+		int row = userService.updateUser(user);
 		if (row != 0) {
 			session.setAttribute("user", user);
 			return ResultUtil.ok(true);
 		} else {
-			return ResultUtil.ok(false);
+			return ResultUtil.fail(false);
 		}
 	}
 
@@ -177,7 +182,7 @@ public class UserController {
 
 		if (!StringUtils.isEmpty(repass) && null != user) {
 			user.setPassword(repass);
-			userDao.updatePassword(user);
+			userService.updatePassword(user);
 			session.setAttribute("user", user);
 			return ResultUtil.ok(true);
 		} else {
@@ -193,7 +198,7 @@ public class UserController {
 		params.put("userId", user.getUserId());
 		params.put("password", request.getParameter("repass"));
 
-		int row = userDao.validPass(params);
+		int row = userService.validPass(params);
 
 		return row == 0 ? ResultUtil.fail(false) : ResultUtil.ok(true);
 	}
@@ -204,11 +209,12 @@ public class UserController {
 		User user = (User) session.getAttribute("user");
 		try {
 			if (user != null) {
-				Attachment attachment = FileUtils.uploadFile(file, new File("photo"), request);
+				Attachment attachment = FileUtils.uploadFile(file, new File(Attachment.userPhotoDir), request);
 				attachment.setRelationId(user.getUserId());
-				attachment.setType(0);
-				attachmentService.deleteAttachment(0, user.getUserId());
+				attachment.setType(Attachment.userPhoto);
+				attachmentService.deleteAttachment(Attachment.userPhoto, user.getUserId());
 				attachmentService.insertAttachment(attachment);
+				session.setAttribute("userPhoto", attachment.getPath());
 			} else {
 				return ResultUtil.fail("用户未登录");
 			}

@@ -1,4 +1,4 @@
-package com.guangde.common;
+package com.guangde.utils;
 
 import java.io.File;
 import java.io.IOException;

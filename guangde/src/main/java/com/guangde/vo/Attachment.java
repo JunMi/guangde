@@ -2,6 +2,9 @@ package com.guangde.vo;
 
 public class Attachment {
 
+	public static final int userPhoto = 0;
+	public static final String userPhotoDir = "photo";
+	
 	private String id;
 	private String relationId;// 关联id
 	private Integer type;// 保存类型，0-用户图像

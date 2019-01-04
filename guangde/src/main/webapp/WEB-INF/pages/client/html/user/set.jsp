@@ -86,8 +86,7 @@
 								<button type="button" class="layui-btn upload-img">
 									<i class="layui-icon">&#xe67c;</i>上传头像
 								</button>
-
-								<img src="${path}"> <span class="loading"></span>
+								<img src="${userPhoto}"> <span class="loading"></span>
 							</div>
 						</div>
 					</div>
@@ -108,15 +107,15 @@
 							<div class="layui-form-item">
 								<label for="L_newpass" class="layui-form-label">新密码</label>
 								<div class="layui-input-inline">
-									<input type="password" id="L_newpass" name="newpass" required
-										lay-verify="newpass" autocomplete="off" class="layui-input">
+									<input type="password" id="L_password" name="password" required
+										lay-verify="password" autocomplete="off" class="layui-input">
 								</div>
 								<div class="layui-form-mid layui-word-aux">6到16个字符</div>
 							</div>
 							<div class="layui-form-item">
 								<label for="L_repass" class="layui-form-label">确认密码</label>
 								<div class="layui-input-inline">
-									<input type="password" id="L_repass" name="repass" required
+									<input type="password" id="L_repassword" name="repass" required
 										lay-verify="required" autocomplete="off" class="layui-input">
 								</div>
 								<div id="V_repassword"
@@ -156,99 +155,9 @@
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
-	
 		layui.use([ 'user' ], function() {
 			var user = layui.user;
 		});
-	
-		/* layui.use([ 'layer', 'form', 'jquery' ], function() {
-			var layer = layui.layer;
-			var form = layui.form;
-			var $ = layui.jquery;
-			//自定义验证规则
-			form.verify({
-				nickName : function(value) {
-					if (value.length < 2) {
-						return '昵称至少得2个字符啊';
-					}
-				},
-				sign : function(value) {
-					if (value.length < 225) {
-						return '签名至多得225个字符';
-					}
-				},
-				newpass : [
-					/^[\S]{6,12}$/, '密码必须6到16位，且不能出现空格'
-				]
-			});
-		
-			//我的资料
-			form.on('submit(updateUserInfo)', function(data) {
-				$.post('user/updateUserInfo', data.field,
-					function(result) {
-						if (result.flag) {
-							layer.msg('修改成功', {
-								icon : 6,
-								time : 3000 //3秒关闭（如果不配置，默认是3秒）
-							});
-						} else {
-							layer.msg('修改失败，请稍后再试', {
-								icon : 5,
-								time : 3000 //3秒关闭（如果不配置，默认是3秒）
-							});
-						}
-					});
-				//阻止form提交表单
-				return false;
-			});
-		
-			//重置密码
-			var validePass = false;
-			var rePass = false;
-			$("#L_repass").on('blur', function(e) {
-				var newpass = $('#L_newpass').val();
-				if (this.value != newpass) {
-					document.getElementById('V_repassword').style.display = 'table';
-					validePass = false;
-				} else {
-					document.getElementById('V_repassword').style.display = 'none';
-					validePass = true;
-				}
-			});
-		
-			$("#L_nowpass").on('blur', function(e) {
-				if (this.value) {
-					$.post('user/validPass', {
-						repass : this.value
-					}, function(result) {
-						if (result.flag) {
-							document.getElementById('V_nowpass').style.display = 'none';
-							rePass = true;
-						} else {
-							document.getElementById('V_nowpass').style.display = 'table';
-							rePass = false;
-						}
-					});
-				}
-			});
-		
-			form.on('submit(updatePassword)', function(data) {
-				if (validePass && rePass) {
-					$.post('user/updatePassword', data.field, function(result) {
-						if (result.flag) {
-							layer.msg('修改成功', {
-								icon : 1,
-								time : 3000 //3秒关闭（如果不配置，默认是3秒）
-							});
-						} else {
-							alert('error');
-						}
-					});
-				}
-				//阻止form提交表单
-				return false;
-			});
-		}); */
 	</script>
 </body>
 </html>

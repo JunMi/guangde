@@ -46,7 +46,7 @@
 									<label for="L_pass" class="layui-form-label">密码</label>
 									<div class="layui-input-inline">
 										<input type="password" id="L_password" name="password"
-											required lay-verify="repassword" autocomplete="off"
+											required lay-verify="password" autocomplete="off"
 											class="layui-input">
 									</div>
 									<div class="layui-form-mid layui-word-aux">6到16个字符</div>
@@ -55,7 +55,7 @@
 									<label for="L_repass" class="layui-form-label">确认密码</label>
 									<div class="layui-input-inline">
 										<input type="password" id="L_repassword" name="repassword"
-											required lay-verify="repassword" autocomplete="off"
+											required lay-verify="password" autocomplete="off"
 											class="layui-input">
 									</div>
 									<div id="V_repassword"
@@ -97,73 +97,8 @@
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
-		layui.use([ 'layer', 'form', 'jquery' ], function() {
-			var layer = layui.layer;
-			var form = layui.form;
-			var $ = layui.jquery;
-			//layer.msg('Hello!!');
-			//自定义验证规则
-			form.verify({
-				nickName : function(value) {
-					if (value.length < 2) {
-						return '昵称至少得2个字符啊';
-					}
-				},
-				repassword : [
-					/^[\S]{6,12}$/, '密码必须6到16位，且不能出现空格'
-				],
-				content : function(value) {
-					layedit.sync(editIndex);
-				}
-			});
-	
-			var valideNickName = false;
-			var validePass = false;
-			$("#L_nickName").on('blur', function(e) {
-				$.post('user/queryUser',
-					{
-						nickName : this.value
-					}, function(res) {
-						if (res.flag && res.data) {
-							document.getElementById('V_nickName').style.display = 'none';
-							valideNickName = true;
-						} else {
-							layer.msg('昵称已经存在!!');
-							document.getElementById('V_nickName').style.display = 'table';
-							valideNickName = false;
-						}
-					});
-			});
-	
-			$("#L_repassword").on('blur', function(e) {
-				var password = $('#L_password').val();
-				if (this.value != password) {
-					document.getElementById('V_repassword').style.display = 'table';
-					validePass = false;
-				} else {
-					document.getElementById('V_repassword').style.display = 'none';
-					validePass = true;
-				}
-			});
-	
-			form.on('submit(userReg)', function(data) {
-				if (valideNickName && validePass) {
-					  $.post('user/doReg', data.field, function(result) {
-						if (result.flag) {
-							layer.msg('注册成功，即将跳转登录页面...', {
-								icon : 1,
-								time : 3000 //3秒关闭（如果不配置，默认是3秒）
-							},function(){
-								window.location.href='user/login';
-							});
-						} else {
-							alert('error');
-						}
-					});  
-				} 
-				//阻止form提交表单
-				return false;
-			});
+		layui.use([ 'user' ], function() {
+			var user = layui.user;
 		});
 	</script>
 </body>
