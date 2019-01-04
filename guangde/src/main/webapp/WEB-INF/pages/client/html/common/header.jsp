@@ -38,7 +38,7 @@
 				          <cite class="layui-hide-xs">${sessionScope.user.nickName}</cite>
 				          <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
 				          <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>
-				          <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
+				          <img src="${sessionScope.userPhoto }">
 				        </a>
 				        <dl class="layui-nav-child">
 				          <dd><a href="user/set"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
