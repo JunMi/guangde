@@ -33,7 +33,7 @@ import com.guangde.vo.User;
 public class UserController {
 
 	private static Logger logger = Logger.getLogger(UserController.class);
-	
+
 	@Autowired
 	private IUserService userService;
 	@Autowired
@@ -92,7 +92,19 @@ public class UserController {
 	public ModelAndView activate() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/activate");
+
 		return model;
+	}
+
+	@RequestMapping(value = "/activateEmail", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultUtil activateEmail(HttpSession session, HttpServletRequest request) {
+		String email = request.getParameter("email");
+		User user = userService.getUserByEmail(email);
+
+		boolean flag = userService.activateEmail(user);
+
+		return flag ? ResultUtil.ok(true) : ResultUtil.fail(false);
 	}
 
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
@@ -222,10 +234,10 @@ public class UserController {
 				return ResultUtil.fail("用户未登录");
 			}
 		} catch (IllegalStateException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			logger.error(e.getMessage());
 		} catch (IOException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 		return ResultUtil.ok(true);

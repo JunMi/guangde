@@ -12,6 +12,8 @@ public interface IUserService {
 
 	public List<User> queryUserByNickname(String nickName);
 
+	public User getUserByEmail(String email);
+	
 	public int validPass(HashMap<String, String> params);
 
 	public int updateUser(User user);
@@ -22,4 +24,5 @@ public interface IUserService {
 
 	public int insertUser(User user);
 
+	public boolean activateEmail(User user);
 }

@@ -1,5 +1,7 @@
 package com.guangde.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.guangde.dao.IUserDao;
 import com.guangde.service.IUserService;
+import com.guangde.utils.EmailUtil;
 import com.guangde.vo.User;
 
 @Service
@@ -28,11 +31,17 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public User getUserLogin(String email,String password) {
+	public User getUserLogin(String email, String password) {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("email", email);
 		params.put("password", password);
 		User user = userDao.getUserLogin(params);
+		return user;
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		User user = userDao.getUserByEmail(email);
 		return user;
 	}
 
@@ -60,6 +69,19 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public int insertUser(User user) {
 		return userDao.insertUser(user);
+	}
+
+	@Override
+	public boolean activateEmail(User user) {
+		String subject = "V社区激活邮件"; 
+		String content = "亲爱的 "+user.getNickName()+"用户：<br/>"
+				+"您好！<br/>"
+				+"您于"+new SimpleDateFormat("yyyy年MM月dd日  hh:mm:ss").format(new Date())+"在中国铁路客户服务中心网站(12306.cn)成功办理了退票业务， 订单号码 EJ18423281， 应退票款175.50元， 所退车票信息如下：<br/>"
+				+"这是一封激活测试邮件！<br/>"
+				+ "如非本人操作，请忽略。<br/>"
+				+ "<hr/>感谢您注册V社区生活！ 本邮件由系统自动发出，请勿回复。​";
+		
+		return EmailUtil.sendEmail(user.getEmail(), subject, content);
 	}
 
 }

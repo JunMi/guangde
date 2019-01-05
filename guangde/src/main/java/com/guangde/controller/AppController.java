@@ -4,60 +4,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.guangde.service.IUserService;
-import com.guangde.vo.User;
-
 @RestController
 public class AppController {
 
-	@Autowired
-	private IUserService userService;
-	
 	private static Logger logger = Logger.getLogger(AppController.class);
-	
-	
+
 	@RequestMapping("index")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("client/html/index");
-		
+
 		model.addObject("test", "mjwu");
 		model.addObject("date", new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(new Date()));
 		logger.info("index-->APP应用首页");
 		return model;
 	}
-	
-	@RequestMapping("/getUser")
-	public User getUser(String userid){
-		User user = userService.getUserById(userid);
-		logger.info("添加日志-->用户名字："+user.getFullName());
-		return user;
-	}
-	
-	@RequestMapping("/updateUser")
-	public int updateUser(String userid){
-		User user = userService.getUserById(userid);
-		if(user==null)
-			return 0;
-		user.setFullName("新名字");
-		return userService.updateUser(user);
-	}
-	
-	@RequestMapping("/insertUser")
-	public int insertUser(String userid){
-		User user = new User();
-		user.setUserId("ids");
-		user.setFullName("新增的用户");
-		return userService.insertUser(user);
-	}
-	
-	@RequestMapping("/deleteUserById")
-	public int deleteUserById(String userid){
-		return userService.deleteUserById(userid);
-	}
-	
+
 }

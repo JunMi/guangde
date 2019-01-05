@@ -530,18 +530,23 @@ layui.define([ 'layer', 'laytpl', 'form', 'element', 'upload', 'util' ], functio
 	fly.newmsg();
 
 	//发送激活邮件
-	fly.activate = function(email) {
-		fly.json('/api/activate/', {}, function(res) {
-			if (res.status === 0) {
+	fly.activate = function(email,index) {
+		$.post('user/activateEmail', {email:email}, function(res) {
+			if (res.flag) {
 				layer.alert('已成功将激活链接发送到了您的邮箱，接受可能会稍有延迟，请注意查收。', {
 					icon : 1
 				});
+			}else{
+				layer.alert('网络异常，发送失败。', {
+					icon : 5
+				})
 			}
-			;
+			layer.close(index);
 		});
 	};
 	$('#LAY-activate').on('click', function() {
-		fly.activate($(this).attr('email'));
+		var index = layer.load(1);
+		fly.activate($(this).attr('email'),index);
 	});
 
 	//点击@

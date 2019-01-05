@@ -1,6 +1,6 @@
 
 
-layui.define([ 'layer', 'form','upload' ], function(exports) {
+layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
@@ -24,7 +24,6 @@ layui.define([ 'layer', 'form','upload' ], function(exports) {
 			/^[\S]{6,12}$/, '密码必须6到16位，且不能出现空格'
 		]
 	});
-
 
 	/**
 	 * 注册
@@ -133,7 +132,9 @@ layui.define([ 'layer', 'form','upload' ], function(exports) {
 							time : 3000 //3秒关闭（如果不配置，默认是3秒）
 						});
 					} else {
-						layer.msg('修改失败，稍后重试', {icon: 2}); 
+						layer.msg('修改失败，稍后重试', {
+							icon : 2
+						});
 					}
 					layer.close(tips);
 				});
@@ -142,7 +143,6 @@ layui.define([ 'layer', 'form','upload' ], function(exports) {
 		//阻止form提交表单
 		return false;
 	});
-
 
 	//上传头像
 	if ($('.upload-img')[0]) {
@@ -173,9 +173,6 @@ layui.define([ 'layer', 'form','upload' ], function(exports) {
 			}
 		});
 	}
-
-
-
 
 	exports('user', function() {
 		alert('Hello World!');

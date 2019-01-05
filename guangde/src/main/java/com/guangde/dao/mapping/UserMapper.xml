@@ -19,6 +19,11 @@
 		FROM USERS T WHERE T.NICKNAME=#{nickName}
 	</select>
 	
+	<select id="getUserByEmail" parameterType="java.lang.String" resultType="com.guangde.vo.User">
+		SELECT T.*
+		FROM USERS T WHERE T.EMAIL=#{email}
+	</select>
+	
 	<select id="validPass" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USERS T WHERE T.USERID=#{userId} AND T.PASSWORD=#{password}
 	</select>
