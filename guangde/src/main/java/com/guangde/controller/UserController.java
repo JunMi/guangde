@@ -131,7 +131,10 @@ public class UserController {
 		return "redirect:/index";
 	}
 
-	@RequestMapping("/queryUser")
+	/**
+	 * 验证昵称
+	 */
+	@RequestMapping("/validNickName")
 	@ResponseBody
 	public ResultUtil queryUserByNickname(String nickName) {
 		if (StringUtils.isEmpty(nickName)) {
@@ -139,11 +142,45 @@ public class UserController {
 		} else {
 			List<User> list = userService.queryUserByNickname(nickName);
 			if (CollectionUtils.isEmpty(list)) {
+				//没有nickName的用户，验证成功
 				return ResultUtil.ok(true);
 			} else {
-				return ResultUtil.ok(false);
+				return ResultUtil.fail(false);
 			}
 		}
+	}
+	
+	@RequestMapping("/validEmail")
+	@ResponseBody
+	public ResultUtil validEmail(String email) {
+		if (StringUtils.isEmpty(email)) {
+			return ResultUtil.fail("参数为空");
+		} else {
+			User user = userService.getUserByEmail(email);
+			if (null == user) {
+				//没有email的用户，验证成功
+				return ResultUtil.ok(true);
+			} else {
+				//已经存在 用户
+				return ResultUtil.fail(false);
+			}
+		}
+	}
+	
+	/**
+	 * 找回密码
+	 * @param email
+	 * @return
+	 */
+	@RequestMapping("/forgetPassword")
+	@ResponseBody
+	public ResultUtil forgetPassword(HttpSession session, HttpServletRequest request){
+		String email = request.getParameter("email");
+		User user = userService.getUserByEmail(email);
+		
+		boolean flag = userService.forgetPassword(user);
+
+		return flag ? ResultUtil.ok(true) : ResultUtil.fail(false);
 	}
 
 	@RequestMapping("/getUser/{userid}")

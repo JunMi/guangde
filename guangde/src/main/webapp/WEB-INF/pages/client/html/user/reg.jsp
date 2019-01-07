@@ -28,6 +28,11 @@
 										<input type="text" id="L_email" name="email" required
 											lay-verify="email" autocomplete="off" class="layui-input">
 									</div>
+									<div id="V_email"
+										style="color:red !important;display: none;"
+										class="layui-form-mid layui-word-aux">
+										<i class="layui-icon">&#xe69c;</i> 邮箱已经注册
+									</div>
 									<div class="layui-form-mid layui-word-aux">将会成为您唯一的登入名</div>
 								</div>
 								<div class="layui-form-item">

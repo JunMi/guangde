@@ -84,4 +84,18 @@ public class UserServiceImpl implements IUserService {
 		return EmailUtil.sendEmail(user.getEmail(), subject, content);
 	}
 
+	@Override
+	public boolean forgetPassword(User user) {
+		String subject = "V社区找回密码"; 
+		String content = "亲爱的 "+user.getNickName()+"用户：<br/>"
+				+"您好！<br/>"
+				+"您于"+new SimpleDateFormat("yyyy年MM月dd日  hh:mm:ss").format(new Date())+" 在V社区通过邮箱找回密码， 您的密码如下：<br/>"
+				+ user.getPassword()+"<br/>"
+				+ "如非本人操作，请及时修改密码。<br/>"
+				+ "<hr/>感谢您注册V社区生活！ 本邮件由系统自动发出，请勿回复。​";
+		
+		return EmailUtil.sendEmail(user.getEmail(), subject, content);
+	}
+
+	
 }

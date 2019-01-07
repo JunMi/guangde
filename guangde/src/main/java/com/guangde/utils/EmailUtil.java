@@ -2,8 +2,6 @@ package com.guangde.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -20,18 +18,6 @@ import org.apache.log4j.Logger;
 public class EmailUtil {
 
 	private static Logger logger = Logger.getLogger(EmailUtil.class);
-
-	public static void main(String[] args) throws Exception {
-
-		String content = "亲爱的 用户：<br/>"
-						+"您好！<br/>"
-						+"您于"+new SimpleDateFormat("yyyy年MM月dd日  hh:mm:ss").format(new Date())+"在中国铁路客户服务中心网站(12306.cn)成功办理了退票业务， 订单号码 EJ18423281， 应退票款175.50元， 所退车票信息如下：<br/>"
-						+"这是一封激活测试邮件！<br/>"
-						+ "如非本人操作，请忽略。<br/>"
-						+ "<hr/>感谢您注册V社区生活！ 本邮件由系统自动发出，请勿回复。​";
-				
-		sendEmail("648326357@qq.com", "V社区激活邮件", content);
-	}
 
 	public static boolean sendEmail(String to, String subject, String content) {
 		Properties properties = new Properties();

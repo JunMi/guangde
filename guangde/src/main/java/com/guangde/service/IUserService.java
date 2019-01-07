@@ -25,4 +25,6 @@ public interface IUserService {
 	public int insertUser(User user);
 
 	public boolean activateEmail(User user);
+	
+	public boolean forgetPassword(User user);
 }

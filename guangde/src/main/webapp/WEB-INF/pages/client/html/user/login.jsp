@@ -23,9 +23,9 @@
 						<div class="layui-form layui-form-pane">
 							<form method="post" action="user/doLogin">
 								<div class="layui-form-item">
-									<label for="L_email" class="layui-form-label">邮箱</label>
+									<label for="L_login_email" class="layui-form-label">邮箱</label>
 									<div class="layui-input-inline">
-										<input type="text" id="L_email" name="email" required
+										<input type="text" id="L_login_email" name="email" required
 											lay-verify="required" autocomplete="off" class="layui-input">
 									</div>
 								</div>

@@ -59,14 +59,13 @@
           <div class="fly-error">该重置密码链接已失效，请重新校验您的信息</div>
           <div class="fly-error">非法链接，请重新校验您的信息</div>
           -->
-
 						<div class="layui-form layui-form-pane">
 							<form method="post">
 								<div class="layui-form-item">
-									<label for="L_email" class="layui-form-label">邮箱</label>
+									<label for="L_forget_email" class="layui-form-label">邮箱</label>
 									<div class="layui-input-inline">
-										<input type="text" id="L_email" name="email" required
-											lay-verify="required" autocomplete="off" class="layui-input">
+										<input type="text" id="L_forget_email" name="email" required
+											lay-verify="email" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-form-item">
@@ -81,7 +80,8 @@
 									</div>
 								</div>
 								<div class="layui-form-item">
-									<button class="layui-btn" alert="1" lay-filter="*" lay-submit>提交</button>
+									<button class="layui-btn" alert="1" lay-filter="forgetPass"
+										lay-submit>提交</button>
 								</div>
 							</form>
 						</div>
@@ -93,7 +93,11 @@
 	</div>
 
 	<!-- footer -->
-	<jsp:include page="../common/footer.jsp"></jsp:include>	
-
+	<jsp:include page="../common/footer.jsp"></jsp:include>
+	<script type="text/javascript">
+		layui.use([ 'user' ], function() {
+			var user = layui.user;
+		});
+	</script>
 </body>
 </html>

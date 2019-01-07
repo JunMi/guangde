@@ -27,11 +27,17 @@
 					<div class="layui-form layui-form-pane layui-tab-item layui-show">
 						<form method="post">
 							<div class="layui-form-item">
-								<label for="L_email" class="layui-form-label">邮箱</label>
+								<label for="L_set_email" class="layui-form-label">邮箱</label>
 								<div class="layui-input-inline">
-									<input type="text" id="L_email" name="email" required
+									<input type="text" id="L_set_email" name="email" required
 										lay-verify="email" autocomplete="off"
+										email="${sessionScope.user.email }"
 										value="${sessionScope.user.email }" class="layui-input">
+								</div>
+								<div id="V_email"
+									style="color:red !important;display: none;"
+									class="layui-form-mid layui-word-aux">
+									<i class="layui-icon">&#xe69c;</i> 邮箱已经存在
 								</div>
 								<div class="layui-form-mid layui-word-aux">
 									如果您在邮箱已激活的情况下，变更了邮箱，需<a href="user/activate"
@@ -39,11 +45,17 @@
 								</div>
 							</div>
 							<div class="layui-form-item">
-								<label for="L_nickName" class="layui-form-label">昵称</label>
+								<label for="L_set_nickName" class="layui-form-label">昵称</label>
 								<div class="layui-input-inline">
-									<input type="text" id="L_nickName" name="nickName" required
+									<input type="text" id="L_set_nickName" name="nickName" required
 										lay-verify="nickName" autocomplete="off"
+										nickName="${sessionScope.user.nickName }"
 										value="${sessionScope.user.nickName }" class="layui-input">
+								</div>
+								<div id="V_nickName"
+									style="color:red !important;display: none;"
+									class="layui-form-mid layui-word-aux">
+									<i class="layui-icon">&#xe69c;</i>昵称已经存在
 								</div>
 								<div class="layui-inline">
 									<div class="layui-input-inline">

@@ -28,38 +28,74 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 	/**
 	 * 注册
 	 */
-	var valideNickName = false;
-	var validePass = false;
-	$("#L_nickName").on('blur', function(e) {
-		$.post('user/queryUser',
-			{
-				nickName : this.value
+	var userValid = {
+		email : true,
+		nickName : true,
+		password : true,
+		rePass :true,//重置密码
+		regStatus : function() {
+			//返回注册验证状态
+			return this.email && this.nickName && this.password;
+		},
+		rePass : function() {
+			//返回更新验证状态
+			return this.password && this.rePass;
+		},
+		updateInfo:function(){
+			//返回验证用户信息状态
+			return this.email && this.nickName;
+		}
+	}
+	$('#L_email').on('blur', function(e) {
+		if (this.value) {
+			$.post('user/validEmail', {
+				email : this.value
 			}, function(res) {
 				if (res.flag && res.data) {
-					document.getElementById('V_nickName').style.display = 'none';
-					valideNickName = true;
+					document.getElementById('V_email').style.display = 'none';
+					userValid.email = true;
 				} else {
-					layer.msg('昵称已经存在!!');
-					document.getElementById('V_nickName').style.display = 'table';
-					valideNickName = false;
+					layer.msg('邮箱已经注册，请直接登陆!!');
+					document.getElementById('V_email').style.display = 'table';
+					userValid.email = false;
 				}
 			});
+		}
 	});
+	
+	$("#L_nickName").on('blur', function(e) {
+			if (this.value) {
+				$.post('user/validNickName',
+					{
+						nickName : this.value
+					}, function(res) {
+						if (res.flag && res.data) {
+							document.getElementById('V_nickName').style.display = 'none';
+							userValid.nickName = true;
+						} else {
+							layer.msg('昵称已经存在!!');
+							document.getElementById('V_nickName').style.display = 'table';
+							userValid.nickName = false;
+						}
+					});
+			}
+		});
 
 	//验证新密码（注册和修改密码通用）
 	$("#L_repassword").on('blur', function(e) {
 		var password = $('#L_password').val();
 		if (this.value != password) {
 			document.getElementById('V_repassword').style.display = 'table';
-			validePass = false;
+			userValid.password = false;
+			layer.msg('密码不一致!!');
 		} else {
 			document.getElementById('V_repassword').style.display = 'none';
-			validePass = true;
+			userValid.password = true;
 		}
 	});
-
+	
 	form.on('submit(userReg)', function(data) {
-		if (valideNickName && validePass) {
+		if (userValid.regStatus()) {
 			$.post('user/doReg', data.field, function(result) {
 				if (result.flag) {
 					layer.msg('注册成功，即将跳转登录页面...', {
@@ -79,28 +115,64 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 
 
 	//我的资料
-	form.on('submit(updateUserInfo)', function(data) {
-		$.post('user/updateUserInfo', data.field,
-			function(result) {
-				if (result.flag) {
-					layer.msg('修改成功', {
-						icon : 6,
-						time : 3000 //3秒关闭（如果不配置，默认是3秒）
-					});
+	//验证邮箱
+	$('#L_set_email').on('blur',function(e){
+		var self = $(this).attr('email');
+		if(self!=this.value){
+			$.post('user/validEmail', {
+				email : this.value
+			}, function(res) {
+				if (res.flag && res.data) {
+					document.getElementById('V_email').style.display = 'none';
+					userValid.email = true;
 				} else {
-					layer.msg('修改失败，请稍后再试', {
-						icon : 5,
-						time : 3000 //3秒关闭（如果不配置，默认是3秒）
-					});
+					layer.msg('邮箱已经存在!!');
+					document.getElementById('V_email').style.display = 'table';
+					userValid.email = false;
 				}
 			});
+		}
+	});
+	//验证昵称
+	$('#L_set_nickName').on('blur',function(e){
+		var self = $(this).attr('nickName');
+		if(self!=this.value){
+			$.post('user/validNickName', {
+				nickName : this.value
+			}, function(res) {
+				if (res.flag && res.data) {
+					document.getElementById('V_nickName').style.display = 'none';
+					userValid.nickName = true;
+				} else {
+					layer.msg('昵称已经存在!!');
+					document.getElementById('V_nickName').style.display = 'table';
+					userValid.nickName = false;
+				}
+			});
+		}
+	});
+	form.on('submit(updateUserInfo)', function(data) {
+		if (userValid.updateInfo()) {
+			$.post('user/updateUserInfo', data.field,
+				function(result) {
+					if (result.flag) {
+						layer.msg('修改成功', {
+							icon : 6,
+							time : 3000 //3秒关闭（如果不配置，默认是3秒）
+						});
+					} else {
+						layer.msg('修改失败，请稍后再试', {
+							icon : 5,
+							time : 3000 //3秒关闭（如果不配置，默认是3秒）
+						});
+					}
+				});
+		}
 		//阻止form提交表单
 		return false;
 	});
 
 	//重置密码
-	var validePass = false;
-	var rePass = false;
 	//验证当前密码是否正确
 	$("#L_nowpass").on('blur', function(e) {
 		if (this.value) {
@@ -109,18 +181,17 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 			}, function(result) {
 				if (result.flag) {
 					document.getElementById('V_nowpass').style.display = 'none';
-					rePass = true;
+					userValid.rePass = true;
 				} else {
 					document.getElementById('V_nowpass').style.display = 'table';
-					rePass = false;
+					userValid.rePass = false;
 				}
 			});
 		}
 	});
-
-	//确认修改
+	//确认修改密码
 	form.on('submit(updatePassword)', function(data) {
-		if (validePass && rePass) {
+		if (userValid.rePass()) {
 			layer.confirm('确认修改密码？', {
 				btn : [ '确认', '取消' ]
 			}, function(index, layero) {
@@ -173,6 +244,26 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 			}
 		});
 	}
+
+	/**
+	 * 找回密码
+	 */
+	form.on('submit(forgetPass)', function(data) {
+		$.post('user/forgetPassword', data.field, function(res) {
+			if (res.flag) {
+				layer.alert('已成功将相关信息发送到了您的邮箱，接受可能会稍有延迟，请注意查收。', {
+					icon : 1
+				});
+			} else {
+				layer.alert('网络异常，发送失败。', {
+					icon : 5
+				});
+			}
+			layer.close(index);
+		})
+		return false;
+	});
+	
 
 	exports('user', function() {
 		alert('Hello World!');
