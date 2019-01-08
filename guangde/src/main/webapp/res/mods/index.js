@@ -528,7 +528,7 @@ layui.define([ 'layer', 'laytpl', 'form', 'element', 'upload', 'util' ], functio
 
 	//新消息通知
 	fly.newmsg();
-
+	
 	//发送激活邮件
 	fly.activate = function(email,index) {
 		$.post('user/activateEmail', {email:email}, function(res) {

@@ -177,10 +177,12 @@ public class UserController {
 	public ResultUtil forgetPassword(HttpSession session, HttpServletRequest request){
 		String email = request.getParameter("email");
 		User user = userService.getUserByEmail(email);
-		
-		boolean flag = userService.forgetPassword(user);
-
-		return flag ? ResultUtil.ok(true) : ResultUtil.fail(false);
+		if(null == user){
+			return ResultUtil.fail("该邮箱信息尚未注册");
+		}else{
+			boolean flag = userService.forgetPassword(user);
+			return flag ? ResultUtil.ok(true) : ResultUtil.fail("网络异常，发送失败");
+		}
 	}
 
 	@RequestMapping("/getUser/{userid}")

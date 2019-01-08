@@ -3,8 +3,9 @@
 <%@ page isELIgnored="false" %>
 <div class="fly-header layui-bg-black">
 	<div class="layui-container">
-		<a class="fly-logo" href="index"> <img
-			src="res/images/logo.png" alt="layui">
+		<a class="fly-logo" href="index"> 
+			<!--<img src="res/images/logo_g.png" alt="layui" style="width: 107px;height: 52px;margin-top: -6px;">-->
+			<img src="res/images/logo.png" alt="layui">
 		</a>
 		<!-- <ul class="layui-nav fly-nav layui-hide-xs">
 			<li class="layui-nav-item layui-this"><a
@@ -14,7 +15,6 @@
 			<li class="layui-nav-item"><a href="javascript:void(0)"
 				target="_blank"><i class="iconfont icon-ui"></i>框架</a></li>
 		</ul> -->
-		
 		
 		<ul class="layui-nav fly-nav-user">
 			<c:choose >
