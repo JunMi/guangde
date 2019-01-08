@@ -76,26 +76,25 @@ public class UserServiceImpl implements IUserService {
 		String subject = "V社区激活邮件"; 
 		String content = "亲爱的 "+user.getNickName()+"用户：<br/>"
 				+"您好！<br/>"
-				+"您于"+new SimpleDateFormat("yyyy年MM月dd日  hh:mm:ss").format(new Date())+"在中国铁路客户服务中心网站(12306.cn)成功办理了退票业务， 订单号码 EJ18423281， 应退票款175.50元， 所退车票信息如下：<br/>"
+				+"您于"+new SimpleDateFormat("yyyy年MM月dd日  HH:mm:ss").format(new Date())+"在V社区激活邮箱，"
+				+ "请点击<a href='http://www.baidu.com/'>免费激活</a>，以激活您的邮箱。<br/>"
 				+"这是一封激活测试邮件！<br/>"
 				+ "如非本人操作，请忽略。<br/>"
-				+ "<hr/>感谢您注册V社区生活！ 本邮件由系统自动发出，请勿回复。​";
+				+ "<hr/>感谢您注册V社区！ 本邮件由系统自动发出，请勿回复。​";
 		
 		return EmailUtil.sendEmail(user.getEmail(), subject, content);
 	}
 
 	@Override
 	public boolean forgetPassword(User user) {
-		String subject = "V社区找回密码"; 
+		String subject = "V社区找回密码";
 		String content = "亲爱的 "+user.getNickName()+"用户：<br/>"
 				+"您好！<br/>"
-				+"您于"+new SimpleDateFormat("yyyy年MM月dd日  hh:mm:ss").format(new Date())+" 在V社区通过邮箱找回密码， 您的密码如下：<br/>"
+				+"您于"+new SimpleDateFormat("yyyy年MM月dd日  HH:mm:ss").format(new Date())+" 在V社区通过邮箱找回密码， 您的密码如下：<br/>"
 				+ user.getPassword()+"<br/>"
 				+ "如非本人操作，请及时修改密码。<br/>"
-				+ "<hr/>感谢您注册V社区生活！ 本邮件由系统自动发出，请勿回复。​";
-		
+				+ "<hr/>感谢您注册V社区！ 本邮件由系统自动发出，请勿回复。​";
 		return EmailUtil.sendEmail(user.getEmail(), subject, content);
 	}
 
-	
 }

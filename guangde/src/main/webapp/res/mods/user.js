@@ -1,5 +1,10 @@
 
-
+/**
+ * 用户模块
+ * 1、注册，登陆，
+ * 2、修改个人资料，头像，更新密码
+ * 3、找回密码
+ */
 layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 	var $ = layui.jquery;
 	var layer = layui.layer;
@@ -32,7 +37,7 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 		email : true,
 		nickName : true,
 		password : true,
-		rePass :true,//重置密码
+		rePass : true, //重置密码
 		regStatus : function() {
 			//返回注册验证状态
 			return this.email && this.nickName && this.password;
@@ -41,7 +46,7 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 			//返回更新验证状态
 			return this.password && this.rePass;
 		},
-		updateInfo:function(){
+		updateInfo : function() {
 			//返回验证用户信息状态
 			return this.email && this.nickName;
 		}
@@ -62,24 +67,24 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 			});
 		}
 	});
-	
+
 	$("#L_nickName").on('blur', function(e) {
-			if (this.value) {
-				$.post('user/validNickName',
-					{
-						nickName : this.value
-					}, function(res) {
-						if (res.flag && res.data) {
-							document.getElementById('V_nickName').style.display = 'none';
-							userValid.nickName = true;
-						} else {
-							layer.msg('昵称已经存在!!');
-							document.getElementById('V_nickName').style.display = 'table';
-							userValid.nickName = false;
-						}
-					});
-			}
-		});
+		if (this.value) {
+			$.post('user/validNickName',
+				{
+					nickName : this.value
+				}, function(res) {
+					if (res.flag && res.data) {
+						document.getElementById('V_nickName').style.display = 'none';
+						userValid.nickName = true;
+					} else {
+						layer.msg('昵称已经存在!!');
+						document.getElementById('V_nickName').style.display = 'table';
+						userValid.nickName = false;
+					}
+				});
+		}
+	});
 
 	//验证新密码（注册和修改密码通用）
 	$("#L_repassword").on('blur', function(e) {
@@ -93,7 +98,7 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 			userValid.password = true;
 		}
 	});
-	
+
 	form.on('submit(userReg)', function(data) {
 		if (userValid.regStatus()) {
 			$.post('user/doReg', data.field, function(result) {
@@ -116,9 +121,9 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 
 	//我的资料
 	//验证邮箱
-	$('#L_set_email').on('blur',function(e){
+	$('#L_set_email').on('blur', function(e) {
 		var self = $(this).attr('email');
-		if(self!=this.value){
+		if (self != this.value) {
 			$.post('user/validEmail', {
 				email : this.value
 			}, function(res) {
@@ -134,9 +139,9 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 		}
 	});
 	//验证昵称
-	$('#L_set_nickName').on('blur',function(e){
+	$('#L_set_nickName').on('blur', function(e) {
 		var self = $(this).attr('nickName');
-		if(self!=this.value){
+		if (self != this.value) {
 			$.post('user/validNickName', {
 				nickName : this.value
 			}, function(res) {
@@ -249,24 +254,26 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 	 * 找回密码
 	 */
 	form.on('submit(forgetPass)', function(data) {
+		var index = layer.load(1);
 		$.post('user/forgetPassword', data.field, function(res) {
 			if (res.flag) {
 				layer.alert('已成功将相关信息发送到了您的邮箱，接受可能会稍有延迟，请注意查收。', {
 					icon : 1
 				});
 			} else {
-				layer.alert('网络异常，发送失败。', {
+				layer.alert(res.data, {
 					icon : 5
 				});
 			}
 			layer.close(index);
-		})
+		});
 		return false;
 	});
-	
 
-	exports('user', function() {
+
+
+	/*exports('user', function() {
 		alert('Hello World!');
-	});
+	});*/
 
 });
