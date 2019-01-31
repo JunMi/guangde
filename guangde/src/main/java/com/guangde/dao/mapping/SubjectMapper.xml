@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.guangde.dao.SubjectDao">
+
+	<!--根据id查询 -->
+	<select id="getSubjectById" parameterType="java.lang.String"
+		resultType="com.guangde.vo.Subject">
+		SELECT *
+		FROM TB_SUBJECT T WHERE T.ID=#{sid}
+	</select>
+
+	<!--新增 -->
+	<insert id="insertSubject" parameterType="com.guangde.vo.Subject">
+		<selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+			SELECT sys_guid() AS id FROM dual
+		</selectKey>
+		INSERT INTO
+		TB_SUBJECT(ID,TITLE,MODULE,STATUS,BROWSE,REPLY,INTEGRAL,CREATEDATE,USERID)
+		VALUES(#{id},#{title},#{module},#{status},#{browse},#{reply},#{integral},TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),#{userid})
+	</insert>
+
+	<insert id="insertContent" parameterType="com.guangde.vo.Content">
+		<selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+			SELECT sys_guid() AS id FROM dual
+		</selectKey>
+		INSERT INTO
+		TB_CONTENT(ID,SUB_ID,CONTENT)
+		VALUES(#{id},#{subId},#{content})
+	</insert>
+
+	<!--编辑 -->
+	<update id="updateSubject" parameterType="com.guangde.vo.Subject">
+		UPDATE TB_SUBJECT t SET
+		T.TITLE=#{title}
+		WHERE t.ID =#{id}
+	</update>
+
+	<select id="querySubject" parameterType="com.guangde.vo.User">
+		SELECT t.*
+		FROM
+		TB_SUBJECT t
+	</select>
+
+</mapper>

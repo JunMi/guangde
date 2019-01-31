@@ -4,6 +4,9 @@ public class Subject {
 
 	private String id;
 	private String title;
+	/**
+	 * 板块-0-提问，99-分享，100-讨论，101-建议，168-公告，169-动态
+	 */
 	private String module;
 	/**
 	 * 帖子状态0-默认模块，1-未结，2-已结，3-审核中，4-顶置，5-精贴

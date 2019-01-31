@@ -20,13 +20,15 @@
 			        <jsp:include page="../common/filter.jsp"></jsp:include>
 					
 			        <ul class="fly-list">          
+			          
+			          
 			          <li>
 			            <a href="user/home" class="fly-avatar">
 			              <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
 			            </a>
 			            <h2>
-			              <a class="layui-badge">分享</a>
-			              <a href="article/detail">基于 layui 的极简社区页面模版</a>
+			              <a class="layui-badge">分享1</a>
+			              <a href="article/detail">基11于 layui 的极简社区页面模版</a>
 			            </h2>
 			            <div class="fly-list-info">
 			              <a href="user/home" link>
@@ -81,7 +83,16 @@
 			        <!-- <div class="fly-none">没有相关数据</div> -->
 			    
 			        <div style="text-align: center">
-			          <div class="laypage-main"><span class="laypage-curr">1</span><a href="/jie/page/2/">2</a><a href="/jie/page/3/">3</a><a href="/jie/page/4/">4</a><a href="/jie/page/5/">5</a><span>…</span><a href="/jie/page/148/" class="laypage-last" title="尾页">尾页</a><a href="/jie/page/2/" class="laypage-next">下一页</a></div>
+			          <div class="laypage-main">
+			          	<span class="laypage-curr">1</span>
+			          	<a href="/jie/page/2/">2</a>
+			          	<a href="/jie/page/3/">3</a>
+			          	<a href="/jie/page/4/">4</a>
+			          	<a href="/jie/page/5/">5</a>
+			          	<span>…</span>
+			          	<a href="/jie/page/148/" class="laypage-last" title="尾页">尾页</a>
+			          	<a href="/jie/page/2/" class="laypage-next">下一页</a>
+			          </div>
 			        </div>
 			
 			     </div>
@@ -103,5 +114,13 @@
 	
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+	layui.use([ 'jie' ], function() {
+			//var user = layui.user;
+			
+			
+	});
+</script>
 </body>
 </html>

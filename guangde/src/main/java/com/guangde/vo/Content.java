@@ -6,7 +6,7 @@ public class Content {
 
 	private String id;
 	private String subId;
-	private Clob content;
+	private String content;
 
 	public String getId() {
 		return id;
@@ -24,11 +24,11 @@ public class Content {
 		this.subId = subId;
 	}
 
-	public Clob getContent() {
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(Clob content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 

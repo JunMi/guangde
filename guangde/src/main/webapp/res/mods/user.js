@@ -11,7 +11,7 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 	var form = layui.form;
 	var upload = layui.upload;
 
-	layer.msg('Hello~~~!');
+	layer.msg('Hello~~~1!');
 
 	//自定义验证规则
 	form.verify({
@@ -271,9 +271,34 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 	});
 
 
+	/**
+	 * 发表帖子
+	 */
+	var article = {};
+	form.on('submit(publicArticle)', function(data) {
+		var index = layer.load(1);
+		$.post('article/updateArticle',data.field,function(res){
+			if (res.flag) {
+				layer.msg(res.data, {
+					icon : 1,
+					time : 3000 //（如果不配置，默认是3秒）
+				}, function() {
+					layer.close(index);
+					window.location.href = '/guangde';
+				});
+			} else {
+				layer.alert(res.data, {
+					icon : 5
+				});
+				layer.close(index);
+			}
+		});
+		return false;
+	});
+	
 
-	/*exports('user', function() {
+	exports('user', function() {
 		alert('Hello World!');
-	});*/
+	});
 
 });
