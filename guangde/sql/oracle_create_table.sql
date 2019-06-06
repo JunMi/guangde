@@ -17,7 +17,7 @@ comment on column ATTACHMENT.type is '0-用户头像';
 comment on column ATTACHMENT.path is '路径';
 comment on column ATTACHMENT.filetype is '文件类型';
 comment on column ATTACHMENT.filename is '文件名称';
--- Create/Recreate primary, unique and foreign key constraints 
+--  Create/Recreate primary, unique and foreign key constraints 
 alter table ATTACHMENT add constraint PK_ATTACHMENT primary key (ID);
 
   
