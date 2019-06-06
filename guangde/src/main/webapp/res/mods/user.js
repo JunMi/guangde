@@ -11,7 +11,7 @@ layui.define([ 'layer', 'form', 'upload' ], function(exports) {
 	var form = layui.form;
 	var upload = layui.upload;
 
-	layer.msg('Hello~~~1!');
+	layer.msg('加载页面成功!');
 
 	//自定义验证规则
 	form.verify({

@@ -120,8 +120,10 @@ create table TB_REPLY
 );
 -- Add comments to the table 
 comment on table TB_REPLY is '主题回复表';
--- Add comments to the columns comment on column TB_REPLY.sub_id is '主题id';
-comment on column TB_REPLY.content is '回帖内容'; comment on column TB_REPLY.userid is '回帖人';
+-- Add comments to the columns 
+comment on column TB_REPLY.sub_id is '主题id';
+comment on column TB_REPLY.content is '回帖内容'; 
+comment on column TB_REPLY.userid is '回帖人';
 comment on column TB_REPLY.ip is 'ip地址';
 comment on column TB_REPLY.createdate is '回复时间';
 -- Create/Recreate primary, unique and foreign key constraints 

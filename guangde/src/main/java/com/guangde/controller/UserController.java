@@ -42,12 +42,16 @@ public class UserController {
 	@RequestMapping("/login")
 	public ModelAndView login(String param) {
 		ModelAndView model = new ModelAndView();
-		if ("reg".equals(param)) {
+		switch (param) {
+		case "reg":
 			model.setViewName("client/html/user/reg");
-		} else if ("forget".equals(param)) {
+			break;
+		case "forget":
 			model.setViewName("client/html/user/forget");
-		} else {
+			break;
+		default:
 			model.setViewName("client/html/user/login");
+			break;
 		}
 		return model;
 	}
@@ -142,14 +146,14 @@ public class UserController {
 		} else {
 			List<User> list = userService.queryUserByNickname(nickName);
 			if (CollectionUtils.isEmpty(list)) {
-				//没有nickName的用户，验证成功
+				// 没有nickName的用户，验证成功
 				return ResultUtil.ok(true);
 			} else {
 				return ResultUtil.fail(false);
 			}
 		}
 	}
-	
+
 	@RequestMapping("/validEmail")
 	@ResponseBody
 	public ResultUtil validEmail(String email) {
@@ -158,28 +162,29 @@ public class UserController {
 		} else {
 			User user = userService.getUserByEmail(email);
 			if (null == user) {
-				//没有email的用户，验证成功
+				// 没有email的用户，验证成功
 				return ResultUtil.ok(true);
 			} else {
-				//已经存在 用户
+				// 已经存在 用户
 				return ResultUtil.fail(false);
 			}
 		}
 	}
-	
+
 	/**
 	 * 找回密码
+	 * 
 	 * @param email
 	 * @return
 	 */
 	@RequestMapping("/forgetPassword")
 	@ResponseBody
-	public ResultUtil forgetPassword(HttpSession session, HttpServletRequest request){
+	public ResultUtil forgetPassword(HttpSession session, HttpServletRequest request) {
 		String email = request.getParameter("email");
 		User user = userService.getUserByEmail(email);
-		if(null == user){
+		if (null == user) {
 			return ResultUtil.fail("该邮箱信息尚未注册");
-		}else{
+		} else {
 			boolean flag = userService.forgetPassword(user);
 			return flag ? ResultUtil.ok(true) : ResultUtil.fail("网络异常，发送失败");
 		}
