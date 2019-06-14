@@ -6,38 +6,38 @@
 	<!--根据用户id查询用户 -->
 	<select id="getUserById" parameterType="java.lang.String" resultType="com.guangde.vo.User">
 		SELECT *
-		FROM USERS T WHERE T.USERID=#{userId}
+		FROM TB_USERS T WHERE T.USERID=#{userId}
 	</select>
 
 	<select id="getUserLogin" parameterType="java.util.HashMap" resultType="com.guangde.vo.User">
 		SELECT T.*
-		FROM USERS T WHERE T.EMAIL=#{email} AND T.PASSWORD=#{password}
+		FROM TB_USERS T WHERE T.EMAIL=#{email} AND T.PASSWORD=#{password}
 	</select>
 	
 	<select id="queryUserByNickname" parameterType="java.lang.String" resultType="com.guangde.vo.User">
 		SELECT T.*
-		FROM USERS T WHERE T.NICKNAME=#{nickName}
+		FROM TB_USERS T WHERE T.NICKNAME=#{nickName}
 	</select>
 	
 	<select id="getUserByEmail" parameterType="java.lang.String" resultType="com.guangde.vo.User">
 		SELECT T.*
-		FROM USERS T WHERE T.EMAIL=#{email}
+		FROM TB_USERS T WHERE T.EMAIL=#{email}
 	</select>
 	
 	<select id="validPass" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM USERS T WHERE T.USERID=#{userId} AND T.PASSWORD=#{password}
+		SELECT COUNT(*) FROM TB_USERS T WHERE T.USERID=#{userId} AND T.PASSWORD=#{password}
 	</select>
 	
 	<!--新增用户 -->
 	<insert id="insertUser" parameterType="com.guangde.vo.User">
 		INSERT INTO
-		USERS(USERID,FULLNAME,NICKNAME,PASSWORD,EMAIL,CREATEDATE)
+		TB_USERS(USERID,FULLNAME,NICKNAME,PASSWORD,EMAIL,CREATEDATE)
 		VALUES(sys_guid(),#{nickName},#{nickName},#{password},#{email},TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 	</insert>
 
 	<!--编辑用户 -->
 	<update id="updateUser" parameterType="com.guangde.vo.User">
-		UPDATE USERS t SET T.EMAIL=#{email},T.NICKNAME=#{nickName}
+		UPDATE TB_USERS t SET T.EMAIL=#{email},T.NICKNAME=#{nickName}
 		<if test="fromCity!=null">,T.FROMCITY=#{fromCity}</if>
 		<if test="gender!=null">,T.GENDER=#{gender}</if>
 		<if test="sign!=null">,T.SIGN=#{sign}</if>
@@ -46,12 +46,12 @@
 	</update>
 	
 	<update id="updatePassword" parameterType="com.guangde.vo.User">
-		UPDATE USERS T SET T.PASSWORD=#{password} WHERE T.USERID =#{userId}
+		UPDATE TB_USERS T SET T.PASSWORD=#{password} WHERE T.USERID =#{userId}
 	</update>
 	
 	<!--根据用户id删除用户 -->
 	<delete id="deleteUserById" parameterType="java.lang.String">
-		delete from USERS
+		delete from TB_USERS
 		where userId=#{userId}
 	</delete>
 </mapper>

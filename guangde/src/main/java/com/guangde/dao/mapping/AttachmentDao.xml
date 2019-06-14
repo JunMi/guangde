@@ -6,20 +6,20 @@
 	<!--新增 -->
 	<insert id="insertAttachment" parameterType="com.guangde.vo.Attachment">
 		INSERT INTO
-		ATTACHMENT
+		TB_ATTACHMENT
 		(ID,RELATIONID,TYPE,PATH,FILETYPE,FILENAME)
 		VALUES(SYS_GUID(),#{relationId},#{type},#{path},#{fileType},#{fileName})
 	</insert>
 	
 	<delete id="deleteAttachment" parameterType="java.util.HashMap">
-		DELETE FROM ATTACHMENT
+		DELETE FROM TB_ATTACHMENT
 		WHERE RELATIONID=#{relationId} AND TYPE=#{type}
 	</delete>
 	
 	<select id="queryAttachment" parameterType="java.util.HashMap"
 		resultType="com.guangde.vo.Attachment">
 		SELECT T.*
-		FROM ATTACHMENT T WHERE
+		FROM TB_ATTACHMENT T WHERE
 		T.RELATIONID=#{relationId} AND T.TYPE=#{type}
 	</select>
 </mapper>
