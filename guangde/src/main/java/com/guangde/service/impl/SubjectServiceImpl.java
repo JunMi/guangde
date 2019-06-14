@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.guangde.dao.SubjectDao;
+import com.guangde.dto.ArticleSubDto;
 import com.guangde.service.ISubjectService;
 import com.guangde.utils.ConstantUtils;
 import com.guangde.vo.Content;
@@ -61,5 +62,13 @@ public class SubjectServiceImpl implements ISubjectService {
 		List<Subject> list = subjectDao.querySubject(params);
 		return list;
 	}
+
+	@Override
+	public List<ArticleSubDto> queryArticleSubList(HashMap<String, String> params) {
+		List<ArticleSubDto> list =subjectDao.queryArticleSubList(params);
+		return list;
+	}
+	
+	
 
 }

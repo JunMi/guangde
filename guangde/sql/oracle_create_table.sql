@@ -80,7 +80,7 @@ create table TB_SUBJECT
 comment on table TB_SUBJECT is '帖子主题表';
 -- Add comments to the columns 
 comment on column TB_SUBJECT.title is '标题';
-comment on column TB_SUBJECT.module is '模块';
+comment on column TB_SUBJECT.module is '模块  0-分享，1-讨论，2-提问，3-公告，4-动态，5-建议';
 comment on column TB_SUBJECT.status is '帖子状态0-默认模块，1-未结，2-已结，3-审核中，4-顶置，5-精贴';
 comment on column TB_SUBJECT.browse is '浏览数';
 comment on column TB_SUBJECT.reply is '回帖数';
