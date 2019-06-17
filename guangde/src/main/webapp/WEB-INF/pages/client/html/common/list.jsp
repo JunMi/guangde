@@ -38,7 +38,7 @@
 	<%-- <li>
 		<a href="user/home.html" class="fly-avatar"> 
 			<img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-			alt="贤心"></a>
+			alt="贤心"></a> 
 		<h2>
 			<a class="layui-badge">动态</a>
 			<a href="jie/detail.html">基于layui 的极简社区页面模版</a>
