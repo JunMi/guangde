@@ -66,6 +66,6 @@
 		                 ON U.USERID = F.RELATIONID
 		                AND F.TYPE = 0) UT
 		    ON T.USERID = UT.USERID) T
- 		WHERE T.RN <![CDATA[<=]]> 5
+ 		WHERE T.RN <![CDATA[<=]]> 5 
 	</select>
 </mapper>
