@@ -51,6 +51,8 @@
 		       T.INTEGRAL,
 		       T.CREATEDATE,
 		       T.USERID,
+	           T.TOP,
+	           T.FINE,
 		       UT.NICKNAME,
 		       UT.VALIDATEINFO,
 		       UT.PATH AS PHOTOPATH

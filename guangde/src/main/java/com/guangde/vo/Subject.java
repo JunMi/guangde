@@ -9,7 +9,7 @@ public class Subject {
 	 */
 	private String module;
 	/**
-	 * 帖子状态0-默认模块，1-未结，2-已结，3-审核中，4-顶置，5-精贴
+	 * 帖子状态0-默认模块，1-未结，2-已结，3-审核中
 	 */
 	private String status;
 	private int browse;
@@ -18,6 +18,45 @@ public class Subject {
 	private int integral;// 帖子积分
 	private String createdate;
 	private String userid;
+	private int top;//顶置
+	private int fine;//精贴
+	
+	public enum MODULE {
+		//   0-分享，1-讨论，2-提问，3-公告，4-动态，5-建议
+		SHARE("0"), DISCUSS("1"), QUESTION("2"),  NOTICE("3"), DYNAMIC("4"),ADVICE("5");
+		private String key;
+
+		private MODULE(String key) {
+			this.key = key;
+		}
+
+		public String getKey() {
+			return key;
+		}
+
+		public void setKey(String key) {
+			this.key = key;
+		}
+	}
+
+	public enum STATUS {
+		// 帖子状态0-默认模块，1-未结，2-已结，3-审核中
+		DEFAULT("0"), UNDO("1"), DOWN("2"), REVIEW("3");
+		private String key;
+
+		private STATUS(String key) {
+			this.key = key;
+		}
+
+		public String getKey() {
+			return key;
+		}
+
+		public void setKey(String key) {
+			this.key = key;
+		}
+
+	}
 
 	public String getId() {
 		return id;
@@ -44,6 +83,7 @@ public class Subject {
 	}
 
 	public String getStatus() {
+		System.out.println(STATUS.valueOf(status));
 		return status;
 	}
 
@@ -89,6 +129,22 @@ public class Subject {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+
+	public int getTop() {
+		return top;
+	}
+
+	public void setTop(int top) {
+		this.top = top;
+	}
+
+	public int getFine() {
+		return fine;
+	}
+
+	public void setFine(int fine) {
+		this.fine = fine;
 	}
 
 }

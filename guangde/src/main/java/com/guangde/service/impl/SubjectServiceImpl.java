@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.guangde.dao.SubjectDao;
 import com.guangde.dto.ArticleSubDto;
 import com.guangde.service.ISubjectService;
-import com.guangde.utils.ConstantUtils;
 import com.guangde.vo.Content;
 import com.guangde.vo.Subject;
 
@@ -30,7 +29,7 @@ public class SubjectServiceImpl implements ISubjectService {
 		try {
 			// User user = userDao.getUserById(subject.getUserid());
 			// 默认帖子状态未结
-			subject.setStatus(ConstantUtils.subjectStatus.UNDO);
+			subject.setStatus(Subject.STATUS.UNDO.getKey());
 			int row = subjectDao.insertSubject(subject);
 			if (row != 0) {
 				content.setSubId(subject.getId());

@@ -74,7 +74,9 @@ create table TB_SUBJECT
   reply      NUMBER,
   integral   NUMBER,
   createdate VARCHAR2(32),
-  userid     VARCHAR2(32)
+  userid     VARCHAR2(32),
+  top        NUMBER default 0,
+  fine       NUMBER default 0
 );
 -- Add comments to the table 
 comment on table TB_SUBJECT is '帖子主题表';
@@ -87,6 +89,8 @@ comment on column TB_SUBJECT.reply is '回帖数';
 comment on column TB_SUBJECT.integral is '帖子积分';
 comment on column TB_SUBJECT.createdate is '创建时间';
 comment on column TB_SUBJECT.userid is '发帖人';
+comment on column TB_SUBJECT.top is '顶置 0-不顶 1-顶置';
+comment on column TB_SUBJECT.fine is '加精 0-不加 1-加精';
 -- Create/Recreate primary, unique and foreign key constraints 
 alter table TB_SUBJECT 
   add constraint PK_SUBJECT primary key (ID);
