@@ -24,9 +24,8 @@
 							id="LAY_goSignin" style="color: #FF5722;">去签到</a>
 					</div>
 					${date }
-					<ul class="fly-list">
+					<ul id="list-top" class="fly-list">
 						<!-- 包含置顶的list -->
-						<jsp:include page="common/list.jsp"></jsp:include>
 					</ul>
 				</div>
 				<!-- 置顶 end -->
@@ -37,7 +36,9 @@
 					<jsp:include page="common/filter.jsp"></jsp:include>
 					
 					<ul class="fly-list">
-						<li>
+						<!-- 包含综合的list -->
+
+						<!-- <li>
 							<a href="user/home.html" class="fly-avatar"> 
 								<img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
 								alt="贤心"></a>
@@ -46,8 +47,8 @@
 							</h2>
 							<div class="fly-list-info">
 								<a href="user/home.html" link><cite>贤心</cite> 
-				                	<i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
-				                	<i class="layui-badge fly-badge-vip">VIP3</i>
+										                	<i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
+										                	<i class="layui-badge fly-badge-vip">VIP3</i>
 								</a> 
 								<span>刚刚</span> 
 								<span class="fly-list-kiss layui-hide-xs" title="悬赏飞吻">
@@ -70,8 +71,8 @@
 							</h2>
 							<div class="fly-list-info">
 								<a href="user/home.html" link> <cite>贤心</cite> 
-								<!--<i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
-									<i class="layui-badge fly-badge-vip">VIP3</i>-->
+								<i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
+									<i class="layui-badge fly-badge-vip">VIP3</i>
 								</a>
 								<span>刚刚</span> 
 								<span class="fly-list-kiss layui-hide-xs" title="悬赏飞吻">
@@ -83,7 +84,8 @@
 							<div class="fly-list-badge">
 								<span class="layui-badge layui-bg-red">精帖</span>
 							</div>
-						</li>
+						</li> -->
+
 					</ul>
 					
 					<div style="text-align: center">
@@ -156,7 +158,16 @@
 	
 	<!-- footer -->
 	<jsp:include page="common/footer.jsp"></jsp:include>	
+	<jsp:include page="common/list.jsp"></jsp:include>
 	
+
+	<script type="text/javascript">
+		layui.use([ 'index' ], function() {
+			var index = layui.index;
+			//var layer = layui.layer;
+			//layer.msg('Hello1!!');
+		});
+	</script>
 </body>
 
 </html>

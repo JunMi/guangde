@@ -19,8 +19,8 @@ public class AppController {
 
 	private static Logger logger = Logger.getLogger(AppController.class);
 
-	@Autowired
-	private ISubjectService subjectService;
+	//@Autowired
+	//private ISubjectService subjectService;
 	
 	@RequestMapping("index")
 	public ModelAndView index() {
@@ -29,10 +29,10 @@ public class AppController {
 		model.addObject("test", "mjwu");
 		model.addObject("date", new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(new Date()));
 		logger.info("index-->APP应用首页");
-		//获取首页置顶的数据
-		HashMap<String, String> params = new HashMap<String, String>();
-		List<ArticleSubDto> articleList = subjectService.queryArticleSubList(params);	
-		model.addObject("articleList", articleList);
+		// 获取首页置顶的数据
+		//HashMap<String, String> params = new HashMap<String, String>();
+		//List<ArticleSubDto> articleList = subjectService.queryArticleSubList(params);
+		//model.addObject("articleList", articleList);
 
 		return model;
 	}

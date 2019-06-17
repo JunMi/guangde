@@ -3,10 +3,11 @@ package com.guangde.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.guangde.dto.UserInfoDto;
 import com.guangde.vo.User;
 
 public interface IUserService {
-	public User getUserById(String userid);
+	public UserInfoDto getUserById(String userid);
 
 	public User getUserLogin(String email,String password);
 

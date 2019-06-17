@@ -22,7 +22,7 @@ public class LoginFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		// 请求uri
 		String uri = request.getRequestURI();
-		logger.info("当前请求的URI===>"+uri);
+		//logger.info("当前请求的URI===>"+uri);
 		// 要过滤的uri集合
 		String[] filterUri = new String[] { "user/set", "user/message", "user/index","user/activate" };
 		boolean doFilter = true;

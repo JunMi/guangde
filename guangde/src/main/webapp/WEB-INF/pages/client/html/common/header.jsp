@@ -43,7 +43,7 @@
 				        <dl class="layui-nav-child">
 				          <dd><a href="user/set"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
 				          <dd><a href="user/message"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
-				          <dd><a href="user/home"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
+				          <dd><a href="user/home?userId=${sessionScope.user.userId}"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
 				          <hr style="margin: 5px 0;">
 				          <dd><a href="user/logout" style="text-align: center;">退出</a></dd>
 				        </dl>

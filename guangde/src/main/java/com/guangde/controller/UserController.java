@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.guangde.dto.UserInfoDto;
 import com.guangde.service.IAttachmentService;
 import com.guangde.service.IUserService;
 import com.guangde.utils.BeanUtil;
@@ -57,9 +58,11 @@ public class UserController {
 	}
 
 	@RequestMapping("/home")
-	public ModelAndView home() {
+	public ModelAndView home(String userId) {
+		UserInfoDto user= userService.getUserById(userId);
 		ModelAndView model = new ModelAndView();
 		model.setViewName("client/html/user/home");
+		model.addObject("user", user);
 		return model;
 	}
 

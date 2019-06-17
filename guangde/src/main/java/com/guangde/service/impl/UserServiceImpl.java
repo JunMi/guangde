@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.guangde.dao.IUserDao;
+import com.guangde.dto.UserInfoDto;
 import com.guangde.service.IUserService;
 import com.guangde.utils.EmailUtil;
 import com.guangde.vo.User;
@@ -20,8 +21,8 @@ public class UserServiceImpl implements IUserService {
 	private IUserDao userDao;
 
 	@Override
-	public User getUserById(String userid) {
-		User user = userDao.getUserById(userid);
+	public UserInfoDto getUserById(String userid) {
+		UserInfoDto user = userDao.getUserById(userid);
 		return user;
 	}
 

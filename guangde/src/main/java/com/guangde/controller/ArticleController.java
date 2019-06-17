@@ -1,5 +1,8 @@
 package com.guangde.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.guangde.dto.ArticleSubDto;
 import com.guangde.service.ISubjectService;
 import com.guangde.utils.BeanUtil;
 import com.guangde.utils.ResultUtil;
@@ -23,7 +27,7 @@ public class ArticleController {
 
 	@Autowired
 	private ISubjectService subjectService;
-	
+
 	@RequestMapping("/index")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView();
@@ -44,28 +48,39 @@ public class ArticleController {
 		model.setViewName("client/html/jie/detail");
 		return model;
 	}
-	
+
 	/**
 	 * 新增，修改发布文章
+	 * 
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/updateArticle")
-	public ResultUtil updateArticle( HttpServletRequest request){
+	public ResultUtil updateArticle(HttpServletRequest request) {
 		String userid = request.getParameter("userid");
-		if(StringUtils.isEmpty(userid)){
+		if (StringUtils.isEmpty(userid)) {
 			logger.info("用户未登陆,发帖失败！");
 			return new ResultUtil(ResultUtil.FAIL_CODE, "用户未登陆", false, null);
 		}
 		Subject sub = BeanUtil.getBean(request, Subject.class);
 		Content content = BeanUtil.getBean(request, Content.class);
-		boolean flag = subjectService.insertSubject(sub,content);
+		boolean flag = subjectService.insertSubject(sub, content);
 		// 成功
 		if (flag) {
 			return ResultUtil.ok("发布成功！");
 		} else {
 			return ResultUtil.fail("发布失败，请重试");
 		}
+	}
+
+	@RequestMapping("/getArticleList")
+	public ResultUtil getArticleList(HttpServletRequest request) {
+		
+		// 获取首页置顶的数据
+		HashMap<String, String> params = new HashMap<String, String>();
+		List<ArticleSubDto> articleList = subjectService.queryArticleSubList(params);
+
+		return ResultUtil.ok(articleList);
 	}
 
 }

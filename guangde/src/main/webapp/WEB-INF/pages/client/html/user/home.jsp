@@ -12,20 +12,20 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 
 	<div class="fly-home fly-panel" style="background-image: url();">
-		<img src="${sessionScope.userPhoto }"> <i
+		<img src="${user.photoPath }"> <i
 			class="iconfont icon-renzheng" title="Fly社区认证"></i>
 		<h1>
-			${sessionScope.user.nickName}
-			<c:if test="${sessionScope.user.gender==0}">
+			${user.nickName}
+			<c:if test="${user.gender==0}">
 				<i class="iconfont icon-nan"></i>
 			</c:if>
-			<c:if test="${sessionScope.user.gender==1}">
+			<c:if test="${user.gender==1}">
 				<i class="iconfont icon-nv"></i>
 			</c:if>
 			<i class="layui-badge fly-badge-vip">VIP3</i>
 			<!-- <span style="color:#c00;">（管理员）</span> -->
 			<!-- <span style="color:#5FB878;">（社区之光）</span> -->
-			<c:if test="${sessionScope.user.isEffective==1}">
+			<c:if test="${user.isEffective==1}">
 				<span>（该号已被封）</span>
 			</c:if>
 		</h1>
@@ -37,12 +37,12 @@
 
 		<p class="fly-home-info">
 			<i class="iconfont icon-kiss" title="积分"></i><span
-				style="color: #FF7200;">${sessionScope.user.starts} 积分</span> <i
-				class="iconfont icon-shijian"></i><span>${sessionScope.user.createdate}加入</span>
-			<i class="iconfont icon-chengshi"></i><span>来自${sessionScope.user.fromCity}</span>
+				style="color: #FF7200;">${user.starts} 积分</span> <i
+				class="iconfont icon-shijian"></i><span>${user.createdate}加入</span>
+			<i class="iconfont icon-chengshi"></i><span>来自${user.fromCity}</span>
 		</p>
 
-		<p class="fly-home-sign">（${sessionScope.user.sign}）</p>
+		<p class="fly-home-sign">（${user.sign}）</p>
 
 		<div class="fly-sns" data-user="">
 			<a href="javascript:;"

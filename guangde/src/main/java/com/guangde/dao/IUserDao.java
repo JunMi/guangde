@@ -3,6 +3,7 @@ package com.guangde.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.guangde.dto.UserInfoDto;
 import com.guangde.vo.User;
 
 public interface IUserDao {
@@ -13,7 +14,7 @@ public interface IUserDao {
 	 * @param userid
 	 * @return
 	 */
-	public User getUserById(String userid);
+	public UserInfoDto getUserById(String userid);
 
 	/**
 	 * 获取登陆用户

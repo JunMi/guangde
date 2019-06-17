@@ -2,7 +2,7 @@
 
 
 <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-	<li class="layui-nav-item"><a href="user/home"> <i
+	<li class="layui-nav-item"><a href="user/home?userId=${sessionScope.user.userId}"> <i
 			class="layui-icon">&#xe609;</i> 我的主页
 	</a></li>
 	<li class="layui-nav-item ${nav=='index'?'layui-this':''}"><a

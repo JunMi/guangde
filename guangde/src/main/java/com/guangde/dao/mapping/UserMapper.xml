@@ -4,9 +4,27 @@
 <mapper namespace="com.guangde.dao.IUserDao">
 
 	<!--根据用户id查询用户 -->
-	<select id="getUserById" parameterType="java.lang.String" resultType="com.guangde.vo.User">
-		SELECT *
-		FROM TB_USERS T WHERE T.USERID=#{userId}
+	<select id="getUserById" parameterType="java.lang.String" resultType="com.guangde.dto.UserInfoDto">
+		SELECT T.USERID,
+		       T.NICKNAME,
+		       T.FULLNAME,
+		       T.EMAIL,
+		       T.MOBILE,
+		       T.FROMCITY,
+		       T.SIGN,
+		       T.GENDER,
+		       T.VALIDATEEMAIL,
+		       T.VALIDATEUSER,
+		       T.STARTS,
+		       T.VALIDATEINFO,
+		       T.CREATEDATE,
+		       T.ISEFFECTIVE,
+		       F.PATH PHOTOPATH
+		  FROM TB_USERS T
+		  LEFT JOIN TB_ATTACHMENT F
+		    ON T.USERID = F.RELATIONID
+		   AND F.TYPE = 0
+		 WHERE T.USERID=#{userId}
 	</select>
 
 	<select id="getUserLogin" parameterType="java.util.HashMap" resultType="com.guangde.vo.User">
