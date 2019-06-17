@@ -43,7 +43,9 @@
 	</select>
 
    <select id="queryArticleSubList" resultType="com.guangde.dto.ArticleSubDto" parameterType="java.util.HashMap">
-		SELECT T.ID,
+   SELECT *
+       FROM ( 
+        SELECT T.ID,
 		       T.TITLE,
 		       T.MODULE,
 		       T.STATUS,
@@ -55,13 +57,15 @@
 	           T.FINE,
 		       UT.NICKNAME,
 		       UT.VALIDATEINFO,
-		       UT.PATH AS PHOTOPATH
+		       UT.PATH AS PHOTOPATH,
+               ROW_NUMBER() OVER(ORDER BY T.TOP DESC, T.CREATEDATE DESC) RN
 		  FROM TB_SUBJECT T
 		 INNER JOIN (SELECT U.USERID, U.NICKNAME,U.VALIDATEINFO, F.PATH
 		               FROM TB_USERS U
 		               LEFT JOIN TB_ATTACHMENT F
 		                 ON U.USERID = F.RELATIONID
 		                AND F.TYPE = 0) UT
-		    ON T.USERID = UT.USERID
+		    ON T.USERID = UT.USERID) T
+ 		WHERE T.RN <![CDATA[<=]]> 5
 	</select>
 </mapper>
