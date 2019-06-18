@@ -14,7 +14,7 @@ public class AppController {
 	private static Logger logger = Logger.getLogger(AppController.class);
 
 
-	//@Autowired   11112222
+	//@Autowired   3333
 	//private ISubjectService subjectService;
 	
 	@RequestMapping("index")
