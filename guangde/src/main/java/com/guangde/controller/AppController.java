@@ -2,17 +2,11 @@ package com.guangde.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.guangde.dto.ArticleSubDto;
-import com.guangde.service.ISubjectService;
 
 @RestController
 public class AppController {
