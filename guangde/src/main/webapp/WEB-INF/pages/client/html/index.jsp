@@ -158,6 +158,8 @@
 	
 	<!-- footer -->
 	<jsp:include page="common/footer.jsp"></jsp:include>	
+	
+	<!-- list模板 -->
 	<jsp:include page="common/list.jsp"></jsp:include>
 	
 
