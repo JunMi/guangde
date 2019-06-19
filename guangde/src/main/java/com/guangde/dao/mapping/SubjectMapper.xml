@@ -44,28 +44,36 @@
 
    <select id="queryArticleSubList" resultType="com.guangde.dto.ArticleSubDto" parameterType="java.util.HashMap">
    SELECT *
-       FROM ( 
-        SELECT T.ID,
-		       T.TITLE,
-		       T.MODULE,
-		       T.STATUS,
-		       T.REPLY,
-		       T.INTEGRAL,
-		       T.CREATEDATE,
-		       T.USERID,
-	           T.TOP,
-	           T.FINE,
-		       UT.NICKNAME,
-		       UT.VALIDATEINFO,
-		       UT.PATH AS PHOTOPATH,
-               ROW_NUMBER() OVER(ORDER BY T.TOP DESC, T.CREATEDATE DESC) RN
-		  FROM TB_SUBJECT T
-		 INNER JOIN (SELECT U.USERID, U.NICKNAME,U.VALIDATEINFO, F.PATH
-		               FROM TB_USERS U
-		               LEFT JOIN TB_ATTACHMENT F
-		                 ON U.USERID = F.RELATIONID
-		                AND F.TYPE = 0) UT
-		    ON T.USERID = UT.USERID) T
- 		WHERE T.RN <![CDATA[<=]]> 5 
+	  FROM (SELECT TEMP.*, ROWNUM ROW_NOW
+	          FROM (
+	          		SELECT T.ID,
+	                       T.TITLE,
+	                       T.MODULE,
+	                       T.STATUS,
+	                       T.REPLY,
+	                       T.INTEGRAL,
+	                       T.CREATEDATE,
+	                       T.USERID,
+	                       T.TOP,
+	                       T.FINE,
+	                       UT.NICKNAME,
+	                       UT.VALIDATEINFO,
+	                       UT.PATH AS PHOTOPATH
+	                  FROM TB_SUBJECT T
+	                 INNER JOIN (SELECT U.USERID,
+	                                   U.NICKNAME,
+	                                   U.VALIDATEINFO,
+	                                   F.PATH
+	                              FROM TB_USERS U
+	                              LEFT JOIN TB_ATTACHMENT F
+	                                ON U.USERID = F.RELATIONID
+	                               AND F.TYPE = 0) UT
+	                    ON T.USERID = UT.USERID
+	                 WHERE T.STATUS = 1
+	                   AND T.FINE = 1
+	                 ORDER BY T.TOP DESC, T.CREATEDATE DESC
+	                ) TEMP
+	         WHERE ROWNUM <![CDATA[<=]]> #{pageIndex} * #{pageSize})
+	   WHERE ROW_NOW <![CDATA[>=]]>  (#{pageIndex} - 1) * #{pageSize} + 1
 	</select>
 </mapper>

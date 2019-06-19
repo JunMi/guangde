@@ -79,7 +79,7 @@ public class ArticleController {
 		// 获取首页置顶的数据
 		HashMap<String, String> params = new HashMap<String, String>();
 		List<ArticleSubDto> articleList = subjectService.queryArticleSubList(params);
-
+		
 		return ResultUtil.ok(articleList);
 	}
 

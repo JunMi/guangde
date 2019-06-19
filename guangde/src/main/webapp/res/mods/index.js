@@ -35,7 +35,20 @@ layui.define([ 'layer', 'laytpl', 'form', 'element', 'upload', 'util' ], functio
     		}    		
     	});
     
-
+     //渲染综合list
+     $.post('article/getArticleList',
+    	{},function(res){
+    		//debugger
+    		//console.log(res);
+    		if(res.flag){
+    			var data =res.data;
+    			var getTpl = listtmpl.innerHTML;
+				var view = document.getElementById('list-show');
+				laytpl(getTpl).render(res, function(html){
+				  view.innerHTML = html;
+				});
+    		}    		
+    	});
 	
 
 
